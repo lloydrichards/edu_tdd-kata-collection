@@ -10,5 +10,9 @@ export const roll = (dices: Array<number>, type: string) => {
     const filtered = dices.filter(d=>d===1)
    return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
   }
+  if(type==="Twos"){
+    const filtered = dices.filter(d=>d===2)
+   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+  }
  return sum(dices); 
 }

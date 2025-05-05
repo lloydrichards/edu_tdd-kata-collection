@@ -363,5 +363,21 @@
       34,
       708549
     ]
+  },
+  {
+    "duration": 6.91122,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 23,
+    "time": [
+      2025,
+      5,
+      4,
+      21,
+      28,
+      5,
+      864822
+    ]
   }
 ]
