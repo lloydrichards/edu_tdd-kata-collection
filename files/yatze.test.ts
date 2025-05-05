@@ -36,3 +36,18 @@ describe('Twos', () => {
     expect(roll([1,1,2,4,4],"Twos")).toEqual(0);
   })
 });
+
+describe('Threes, Fours, Fives, Sixes', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([1,3,3,4,4],"Threes")).toEqual(6);
+    expect(roll([1,2,2,4,4],"Fours")).toEqual(8);
+    expect(roll([5,2,5,2,4],"Fives")).toEqual(10);
+    expect(roll([1,2,6,6,4],"Sixes")).toEqual(12);
+  })
+    it('roll 5 dice unsuccessfully', () => {
+    expect(roll([1,2,2,4,4],"Threes")).toEqual(0);
+    expect(roll([1,2,2,2,4],"Fours")).toEqual(0);
+    expect(roll([1,2,2,2,4],"Fives")).toEqual(0);
+    expect(roll([1,2,2,2,4],"Sixes")).toEqual(0);
+  })
+});
