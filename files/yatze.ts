@@ -27,14 +27,21 @@ export const roll = (dices: Array<number>, type: string) => {
     case "Sixes":
       return doubleScorer(6);
     case "Pairs":
-      const combos = [1,2,3,4,5,6]
+      const pairCombos = [1,2,3,4,5,6]
                            .map((digit) => dices.filter(d=>d===digit).length >= 2 ? digit : -1)
                            .filter(d=>d>=0)
 
-      if (combos.length !==2) return 0;
+      if (pairCombos.length !==2) return 0;
 
-      return Math.max(...combos) *2
-      
+      return Math.max(...pairCombos) *2
+    case "Two Pairs":
+      const twoCombos = [1,2,3,4,5,6]
+                           .map((digit) => dices.filter(d=>d===digit).length === 2 ? digit : -1)
+                           .filter(d=>d>=0)
+
+      if (twoCombos.length !==2) return 0;
+
+      return 8
     default:
       return sum(dices);
   }
