@@ -1,15 +1,44 @@
-PASS ./yatze.test.ts
+FAIL ./yatze.test.ts
   Chance
     ✓ roll 5 dice (2 ms)
   Yatze
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Ones
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
+  Twos
+    ✕ roll 5 dice successfully (2 ms)
 
-Test Suites: 1 passed, 1 total
-Tests:       5 passed, 5 total
+  ● Twos › roll 5 dice successfully
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 4
+    Received: 13
+
+      30 | describe('Twos', () => {
+      31 |   it('roll 5 dice successfully', () => {
+    > 32 |     expect(roll([1,2,2,4,4],"Twos")).toEqual(4);
+         |                                      ^
+      33 | //    expect(roll([1,2,2,2,4],"Twos")).toEqual(2);
+      34 |   })
+      35 | //    it('roll 5 dice unsuccessfully', () => {
+
+      at Object.<anonymous> (yatze.test.ts:32:38)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 5 passed, 6 total
 Snapshots:   0 total
-Time:        2.682 s
+Time:        2.652 s
 Ran all test suites.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! @ test: `jest --maxWorkers=2`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the @ test script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/sandbox/.npm/_logs/2025-05-04T21_27_34_337Z-debug.log
