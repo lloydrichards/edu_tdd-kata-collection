@@ -60,6 +60,11 @@ export const roll = (dices: Array<number>, type: string) => {
       return dices.map((d,idx)=>d==idx+1).every(Boolean) ? 15 : 0;
     case "Large Straight":
       return dices.map((d,idx)=>d==idx+2).every(Boolean) ? 20 : 0;
+    case "Full House":
+      const tripleCombos = comboScorer((d)=>d==3)
+      const doubleCombos = comboScorer((d)=>d==2)
+      if(!(tripleCombos.length == 1 && doubleCombos.length ==1)) return 0;
+      return tripleCombos[0]*3 + doubleCombos[0]*2;
     default:
       throw new Error("unhandled types")
   }
