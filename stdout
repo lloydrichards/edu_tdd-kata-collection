@@ -1,0 +1,8 @@
+
+> @ typecheck /sandbox
+> tsc --noEmit
+
+
+> @ test /sandbox
+> jest --maxWorkers=2
+
