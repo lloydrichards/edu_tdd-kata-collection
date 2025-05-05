@@ -58,6 +58,6 @@ describe('Pairs', () => {
 //    expect(roll([1,1,6,2,6],"Pairs")).toEqual(12);
   })
       it('roll 5 dice unsuccessfully', () => {
-    expect(roll([3,3,3,4,1],"Twos")).toEqual(0);
+    expect(roll([3,3,3,4,1],"Pairs")).toEqual(0);
   })
 });
