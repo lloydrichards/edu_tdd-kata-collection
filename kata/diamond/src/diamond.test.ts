@@ -45,3 +45,16 @@ describe("C", () => {
     ]);
   });
 });
+describe("D", () => {
+  it("should be a diamond", () => {
+    expect(prettyDiamond("C")).toEqual([
+      "   A   ",
+      "  B B  ",
+      " C   C ",
+      "D     D",
+      " C   C ",
+      "  B B  ",
+      "   A   ",
+    ]);
+  });
+});
