@@ -104,3 +104,13 @@ describe('Small Straight', () => {
     expect(roll([2,2,2,2,2],"Small Straight")).toEqual(0);
   })
 });
+
+describe('Large Straight', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([1,2,3,4,5],"Large Straight")).toEqual(20);
+  })
+  it('roll 5 dice unsuccessfully', () => {
+    expect(roll([2,2,2,5,5],"Large Straight")).toEqual(0);
+    expect(roll([2,2,2,2,2],"Large Straight")).toEqual(0);
+  })
+});
