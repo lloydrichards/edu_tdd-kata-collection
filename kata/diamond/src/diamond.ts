@@ -53,8 +53,6 @@ export const prettyDiamond = (letter: string) => {
       })
       .join("")
   );
-  console.log("\n\n");
-  console.log(result.join("\n"));
 
   return result;
 };
