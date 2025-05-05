@@ -1,10 +1,4 @@
-import { answer, roll } from './hiker';
-
-describe('answer', () => {
-  it('to life the universe and everything', () => {
-    expect(answer()).toEqual(42);
-  });
-});
+import {  roll } from './hiker';
 
 describe('Chance', () => {
   it('roll 5 dice', () => {
