@@ -27,5 +27,37 @@
       14,
       686773
     ]
+  },
+  {
+    "duration": 3.114554,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 2,
+    "time": [
+      2025,
+      5,
+      4,
+      21,
+      4,
+      50,
+      365558
+    ]
+  },
+  {
+    "duration": 6.59147,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 3,
+    "time": [
+      2025,
+      5,
+      4,
+      21,
+      5,
+      9,
+      228012
+    ]
   }
 ]
