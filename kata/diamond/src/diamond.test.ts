@@ -100,3 +100,9 @@ describe("E", () => {
     expect(prettyDiamond("E").at(-1)!.length).toBe(9);
   });
 });
+describe("Z", () => {
+  it("should be a squared", () => {
+    expect(prettyDiamond("Z").length).toBe(9);
+    expect(prettyDiamond("Z").at(-1)!.length).toBe(9);
+  });
+});
