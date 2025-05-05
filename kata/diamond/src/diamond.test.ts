@@ -40,7 +40,7 @@ describe("C", () => {
     expect(prettyDiamond("C")).toEndWith(`  A  `);
   });
   it("should be a diamond", () => {
-    expect(prettyDiamond("B")).toBe(
+    expect(prettyDiamond("C")).toBe(
       `  A  
  B B 
  C   C

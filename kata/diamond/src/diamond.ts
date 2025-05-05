@@ -2,5 +2,5 @@ export const prettyDiamond = (letter: string) => {
   if (letter === "A") return "A";
   if (letter === "B") return " A \nB B\n A ";
 
-  return "  A  C   C  A  ";
+  return "  A  \n B B \n C   C\n B B \n  A  ";
 };
