@@ -2,33 +2,34 @@
 
 const sum = (numbers: Array<number>) =>numbers.reduce((acc,cur)=>acc+cur,0); 
 
+const makeDoubles = (dices: Array<number>)=> (digit: number) => {
+  const filtered = dices.filter(d=>d===digit)
+  return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+}
+
 export const roll = (dices: Array<number>, type: string) => {
   if(type==="Yatze"){
    return dices.reduce((acc,cur)=>acc && cur===dices[0],true) ? 50 : 0; 
   }
+  
+  const doubleScorer = makeDoubles(dices);
   if(type==="Ones"){
-    const filtered = dices.filter(d=>d===1)
-   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+   return doubleScorer(1)
   }
   if(type==="Twos"){
-    const filtered = dices.filter(d=>d===2)
-   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+   return doubleScorer(2)
   }
     if(type==="Threes"){
-    const filtered = dices.filter(d=>d===3)
-   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+    return doubleScorer(3)
   }
     if(type==="Fours"){
-    const filtered = dices.filter(d=>d===4)
-   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+    return doubleScorer(4)
   }
     if(type==="Fives"){
-    const filtered = dices.filter(d=>d===5)
-   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+    return doubleScorer(5)
   }
     if(type==="Sixes"){
-    const filtered = dices.filter(d=>d===6)
-   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
+    return doubleScorer(6)
   }
  return sum(dices); 
 }
