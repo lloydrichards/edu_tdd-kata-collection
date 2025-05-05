@@ -8,7 +8,7 @@ export const roll = (dices: Array<number>, type: string) => {
   }
   if(type==="Ones"){
     const filtered = dices.filter(d=>d===1)
-   return filtered.length === 2 ? sum(filtered) : 0
+   return filtered.length >= 2 ? sum(filtered.slice(0,1)) : 0
   }
  return sum(dices); 
 }
