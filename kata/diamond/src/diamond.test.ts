@@ -29,7 +29,7 @@ describe("B", () => {
 
 describe("C", () => {
   it("middle as `C   C`", () => {
-    expect(prettyDiamond("C")).toInclude(`C   C`);
+    expect(prettyDiamond("C")).toContain(`C   C`);
   });
   it("return start and end with ` A `'s", () => {
     expect(prettyDiamond("C")).toStartWith(`  A  `);
@@ -47,7 +47,7 @@ describe("C", () => {
 });
 describe("D", () => {
   it("should be a diamond", () => {
-    expect(prettyDiamond("C")).toEqual([
+    expect(prettyDiamond("D")).toEqual([
       "   A   ",
       "  B B  ",
       " C   C ",
