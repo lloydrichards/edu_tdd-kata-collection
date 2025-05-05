@@ -57,7 +57,9 @@ export const roll = (dices: Array<number>, type: string) => {
 
       return fourCombos[0]*4;
     case "Small Straight":
-      return dices.map((d,idx)=>d==idx+1).every(Boolean) ? 15 : 0
+      return dices.map((d,idx)=>d==idx+1).every(Boolean) ? 15 : 0;
+    case "Large Straight":
+      return dices.map((d,idx)=>d==idx+2).every(Boolean) ? 20 : 0;
     default:
       throw new Error("unhandled types")
   }
