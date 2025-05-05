@@ -715,5 +715,21 @@
       18,
       136702
     ]
+  },
+  {
+    "duration": 6.754722,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 45,
+    "time": [
+      2025,
+      5,
+      5,
+      7,
+      43,
+      15,
+      680359
+    ]
   }
 ]

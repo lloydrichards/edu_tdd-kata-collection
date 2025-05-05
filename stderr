@@ -1,8 +1,8 @@
-PASS ./yatze.test.ts
+FAIL ./yatze.test.ts
   Chance
-    ✓ roll 5 dice (3 ms)
+    ✓ roll 5 dice (2 ms)
   Yatze
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully (1 ms)
@@ -11,14 +11,43 @@ PASS ./yatze.test.ts
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully (1 ms)
   Threes, Fours, Fives, Sixes
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Pairs
     ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
+  Two Pairs
+    ✕ roll 5 dice successfully (2 ms)
 
-Test Suites: 1 passed, 1 total
-Tests:       11 passed, 11 total
+  ● Two Pairs › roll 5 dice successfully
+
+    expect(received).toEqual(expected) // deep equality
+
+    Expected: 8
+    Received: 10
+
+      65 | describe('Two Pairs', () => {
+      66 |   it('roll 5 dice successfully', () => {
+    > 67 |     expect(roll([1,1,2,3,3],"Two Pairs")).toEqual(8);
+         |                                           ^
+      68 |   })
+      69 | //      it('roll 5 dice unsuccessfully', () => {
+      70 | //    expect(roll([1,1,2,2,2],"Two Pairs")).toEqual(0);
+
+      at Object.<anonymous> (yatze.test.ts:67:43)
+
+Test Suites: 1 failed, 1 total
+Tests:       1 failed, 11 passed, 12 total
 Snapshots:   0 total
-Time:        2.68 s
+Time:        2.73 s
 Ran all test suites.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! @ test: `jest --maxWorkers=2`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the @ test script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/sandbox/.npm/_logs/2025-05-05T07_43_15_354Z-debug.log
