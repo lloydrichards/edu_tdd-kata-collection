@@ -114,3 +114,13 @@ describe('Large Straight', () => {
     expect(roll([2,2,2,2,2],"Large Straight")).toEqual(0);
   })
 });
+
+describe('Full House', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([1,1,2,2,2],"Full House")).toEqual(8);
+  })
+  it('roll 5 dice unsuccessfully', () => {
+    expect(roll([2,2,3,3,4],"Full House")).toEqual(0);
+    expect(roll([4,4,4,4,4],"Full House")).toEqual(0);
+  })
+});

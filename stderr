@@ -1,39 +1,82 @@
-PASS ./yatze.test.ts
+FAIL ./yatze.test.ts
   Chance
-    ✓ roll 5 dice (4 ms)
+    ✓ roll 5 dice (2 ms)
   Yatze
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Twos
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Threes, Fours, Fives, Sixes
-    ✓ roll 5 dice successfully (2 ms)
+    ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Pairs
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Two Pairs
     ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Three of a Kind
     ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Four of a Kind
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (3 ms)
+    ✓ roll 5 dice unsuccessfully
   Small Straight
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully (1 ms)
   Large Straight
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
+  Full House
+    ✕ roll 5 dice successfully (3 ms)
+    ✕ roll 5 dice unsuccessfully
 
-Test Suites: 1 passed, 1 total
-Tests:       21 passed, 21 total
+  ● Full House › roll 5 dice successfully
+
+    unhandled types
+
+      62 |       return dices.map((d,idx)=>d==idx+2).every(Boolean) ? 20 : 0;
+      63 |     default:
+    > 64 |       throw new Error("unhandled types")
+         |             ^
+      65 |   }
+      66 | }
+      67 | 
+
+      at Object.exports.roll (yatze.ts:64:13)
+      at Object.<anonymous> (yatze.test.ts:120:12)
+
+  ● Full House › roll 5 dice unsuccessfully
+
+    unhandled types
+
+      62 |       return dices.map((d,idx)=>d==idx+2).every(Boolean) ? 20 : 0;
+      63 |     default:
+    > 64 |       throw new Error("unhandled types")
+         |             ^
+      65 |   }
+      66 | }
+      67 | 
+
+      at Object.exports.roll (yatze.ts:64:13)
+      at Object.<anonymous> (yatze.test.ts:123:12)
+
+Test Suites: 1 failed, 1 total
+Tests:       2 failed, 21 passed, 23 total
 Snapshots:   0 total
-Time:        2.716 s
+Time:        2.84 s
 Ran all test suites.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! @ test: `jest --maxWorkers=2`
+npm ERR! Exit status 1
+npm ERR! 
+npm ERR! Failed at the @ test script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /home/sandbox/.npm/_logs/2025-05-05T08_06_48_696Z-debug.log
