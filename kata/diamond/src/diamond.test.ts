@@ -16,11 +16,11 @@ describe("A", () => {
 
 describe("B", () => {
   it("middle as `B B`", () => {
-    expect(prettyDiamond("B")).toInclude(`B B`);
+    expect(prettyDiamond("B").at(1)).toEqual(`B B`);
   });
   it("return start and end with ` A `'s", () => {
-    expect(prettyDiamond("B")).toStartWith(` A `);
-    expect(prettyDiamond("B")).toEndWith(` A `);
+    expect(prettyDiamond("B").at(0)).toEqual(` A `);
+    expect(prettyDiamond("B").at(-1)).toEqual(` A `);
   });
   it("should be a diamond", () => {
     expect(prettyDiamond("B")).toEqual([" A ", "B B", " A "]);
@@ -32,8 +32,8 @@ describe("C", () => {
     expect(prettyDiamond("C")).toContain(`C   C`);
   });
   it("return start and end with ` A `'s", () => {
-    expect(prettyDiamond("C")).toStartWith(`  A  `);
-    expect(prettyDiamond("C")).toEndWith(`  A  `);
+    expect(prettyDiamond("C").at(0)).toEqual(`  A  `);
+    expect(prettyDiamond("C").at(-1)).toEndWith(`  A  `);
   });
   it("should be a diamond", () => {
     expect(prettyDiamond("C")).toEqual([
