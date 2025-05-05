@@ -603,5 +603,21 @@
       17,
       469730
     ]
+  },
+  {
+    "duration": 6.776731,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 38,
+    "time": [
+      2025,
+      5,
+      5,
+      7,
+      33,
+      42,
+      804587
+    ]
   }
 ]
