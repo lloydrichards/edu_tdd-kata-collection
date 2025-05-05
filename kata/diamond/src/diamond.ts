@@ -20,7 +20,13 @@ export const prettyDiamond = (letter: string) => {
   return Array.from({ length: width }).map((_, y) =>
     row
       .split("")
-      .map((_, x) => (x == y ? letter : " "))
+      .map((_, x) => {
+        if (x == middleIdx && y == 0) return "A";
+        if (y == middleIdx && x == 0) return letter;
+        if (y == middleIdx && x == width - 1) return letter;
+        if (x == middleIdx && y == width - 1) return "A";
+        return " ";
+      })
       .join("")
   );
 };
