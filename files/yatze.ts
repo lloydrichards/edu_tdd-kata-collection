@@ -41,7 +41,7 @@ export const roll = (dices: Array<number>, type: string) => {
 
       if (twoCombos.length !==2) return 0;
 
-      return 8
+      return twoCombos.reduce((acc,cur)=>cur*2+acc,0);
     default:
       return sum(dices);
   }
