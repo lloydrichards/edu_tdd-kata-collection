@@ -619,5 +619,37 @@
       42,
       804587
     ]
+  },
+  {
+    "duration": 3.262317,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 39,
+    "time": [
+      2025,
+      5,
+      5,
+      7,
+      35,
+      49,
+      981115
+    ]
+  },
+  {
+    "duration": 6.704724,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 40,
+    "time": [
+      2025,
+      5,
+      5,
+      7,
+      36,
+      31,
+      714507
+    ]
   }
 ]

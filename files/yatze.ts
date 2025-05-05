@@ -28,9 +28,14 @@ export const roll = (dices: Array<number>, type: string) => {
       return doubleScorer(6);
     case "Pairs":
       const digits = [1,2,3,4,5,6]
-      const combos = digits.map(digit => dices.filter(d=>d===digit).length >= 2).filter(Boolean)
+      const combos = digits.map(digit => dices.filter(d=>d===digit).length >= 2).map((d,idx)=>d ? idx : -1).filter(d=>d<=0)
 
-      return combos.length ==2 ? 8 : 0;
+      if (combos.length !==2) return 0;
+      
+      const max = Math.max(...combos)
+      
+      return max + max;
+      
     default:
       return sum(dices);
   }
