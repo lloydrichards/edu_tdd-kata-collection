@@ -3,7 +3,7 @@ import { prettyDiamond } from "./diamond";
 
 // - [x] When A is given, return only A
 // - [x] When B is given, return middle as `B B`
-// - [ ] When B is given, return head and tail as ` A `'s
+// - [x] When B is given, return head and tail as ` A `'s
 // - [ ] When C is given, return middle as `C  C`
 // - [ ] When C is given, return two ` B B `'s
 // - [ ] When C is given, return head and tail as `  A  `
@@ -28,5 +28,11 @@ describe("B", () => {
 B B
  A `
     );
+  });
+});
+
+describe("C", () => {
+  it("middle as `C   C`", () => {
+    expect(prettyDiamond("C")).toInclude(`C   C`);
   });
 });
