@@ -6,3 +6,13 @@
 > @ test /sandbox
 > jest --maxWorkers=2
 
+  console.log
+    { combos: [ 2, 3 ] }
+
+      at Object.exports.roll (yatze.ts:34:15)
+
+  console.log
+    { max: 3 }
+
+      at Object.exports.roll (yatze.ts:36:15)
+

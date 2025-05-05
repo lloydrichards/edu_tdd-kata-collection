@@ -31,9 +31,9 @@ export const roll = (dices: Array<number>, type: string) => {
       const combos = digits.map(digit => dices.filter(d=>d===digit).length >= 2).map((d,idx)=>d ? idx : -1).filter(d=>d>=0)
 
       if (combos.length !==2) return 0;
-      
+      console.log({combos})
       const max = Math.max(...combos)
-      
+      console.log({max})
       return max + max;
       
     default:
