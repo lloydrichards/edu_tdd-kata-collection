@@ -7,12 +7,22 @@
 > jest --maxWorkers=2
 
   console.log
-    { combos: [ 2, 3 ] }
+    { combos: [ 3, 4 ] }
 
       at Object.exports.roll (yatze.ts:34:15)
 
   console.log
-    { max: 3 }
+    { max: 4 }
+
+      at Object.exports.roll (yatze.ts:36:15)
+
+  console.log
+    { combos: [ 1, 6 ] }
+
+      at Object.exports.roll (yatze.ts:34:15)
+
+  console.log
+    { max: 6 }
 
       at Object.exports.roll (yatze.ts:36:15)
 

@@ -28,7 +28,7 @@ export const roll = (dices: Array<number>, type: string) => {
       return doubleScorer(6);
     case "Pairs":
       const digits = [1,2,3,4,5,6]
-      const combos = digits.map(digit => dices.filter(d=>d===digit).length >= 2).map((d,idx)=>d ? idx : -1).filter(d=>d>=0)
+      const combos = digits.map(digit => dices.filter(d=>d===digit).length >= 2).map((d,idx)=>d ? idx+1 : -1).filter(d=>d>=0)
 
       if (combos.length !==2) return 0;
       console.log({combos})
