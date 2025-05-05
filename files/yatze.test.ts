@@ -66,8 +66,8 @@ describe('Two Pairs', () => {
   it('roll 5 dice successfully', () => {
     expect(roll([1,1,2,3,3],"Two Pairs")).toEqual(8);
   })
-//      it('roll 5 dice unsuccessfully', () => {
-//    expect(roll([1,1,2,2,2],"Two Pairs")).toEqual(0);
-//    expect(roll([1,1,2,3,4],"Two Pairs")).toEqual(0);
-//  })
+      it('roll 5 dice unsuccessfully', () => {
+    expect(roll([1,1,2,2,2],"Two Pairs")).toEqual(0);
+    expect(roll([1,1,2,3,4],"Two Pairs")).toEqual(0);
+  })
 });

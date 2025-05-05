@@ -1,26 +1,27 @@
 PASS ./yatze.test.ts
   Chance
-    ✓ roll 5 dice (3 ms)
+    ✓ roll 5 dice (2 ms)
   Yatze
     ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Twos
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Threes, Fours, Fives, Sixes
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully (2 ms)
+  Pairs
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully (1 ms)
-  Pairs
-    ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully
   Two Pairs
     ✓ roll 5 dice successfully
+    ✓ roll 5 dice unsuccessfully
 
 Test Suites: 1 passed, 1 total
-Tests:       12 passed, 12 total
+Tests:       13 passed, 13 total
 Snapshots:   0 total
-Time:        2.841 s
+Time:        2.735 s
 Ran all test suites.
