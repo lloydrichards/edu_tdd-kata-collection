@@ -1,7 +1,7 @@
 export const prettyDiamond = (letter: string) => {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
-  const alpha = alphabet.findIndex((d) => d == letter);
+  const alpha = alphabet.findIndex((d) => d == letter.toUpperCase());
 
   const width = alpha + alpha + 1;
   const middleIdx = Math.floor(width / 2);
