@@ -15,6 +15,18 @@ the `./kata` directory.
   └── 🗂️ yatze     # Simple dice game of Yatze
   ```
 
+## Test-Driven Development (TDD)
+
+TDD is a development practice where you write tests before writing the code.
+Each cycle follows three simple steps:
+
+1. 🔴 Write a failing test for a new feature or bug fix.
+1. 🟢 Write the minimum code needed to make the test pass.
+1. 🟡 Refactor the code for clarity and quality, ensuring all tests still pass.
+
+This cycle is repeated for each new piece of functionality, leading to reliable,
+well-tested, and maintainable code.
+
 ## Getting Started
 
 Each kata is a standalone TypeScript project. To set up and run a kata:

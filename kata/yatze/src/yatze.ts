@@ -47,12 +47,12 @@ export const roll = (dices: Array<number>, type: string) => {
     case "Three of a Kind": {
       const threeCombos = comboScorer((d) => d == 3);
       if (threeCombos.length == 0) return 0;
-      return threeCombos[0] * 3;
+      return threeCombos[0]! * 3;
     }
     case "Four of a Kind": {
       const fourCombos = comboScorer((d) => d == 4);
       if (fourCombos.length == 0) return 0;
-      return fourCombos[0] * 4;
+      return fourCombos[0]! * 4;
     }
     case "Small Straight":
       return dices.map((d, idx) => d == idx + 1).every(Boolean) ? 15 : 0;
@@ -62,7 +62,7 @@ export const roll = (dices: Array<number>, type: string) => {
       const tripleCombos = comboScorer((d) => d == 3);
       const doubleCombos = comboScorer((d) => d == 2);
       if (!(tripleCombos.length == 1 && doubleCombos.length == 1)) return 0;
-      return tripleCombos[0] * 3 + doubleCombos[0] * 2;
+      return tripleCombos[0]! * 3 + doubleCombos[0]! * 2;
     }
     default:
       throw new Error("unhandled type");
