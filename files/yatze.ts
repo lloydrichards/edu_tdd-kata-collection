@@ -54,7 +54,9 @@ export const roll = (dices: Array<number>, type: string) => {
 
       if (fourCombos.length == 0) return 0;
 
-      return fourCombos[0]*4
+      return fourCombos[0]*4;
+    case "Small Straight":
+      return dices.map((d,idx)=>d==idx+1).every(Boolean)
     default:
       return sum(dices);
   }
