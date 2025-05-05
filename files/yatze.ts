@@ -49,7 +49,7 @@ export const roll = (dices: Array<number>, type: string) => {
 
       if (threeCombos.length == 0) return 0;
 
-      return 9
+      return threeCombos[0]*3
     default:
       return sum(dices);
   }
