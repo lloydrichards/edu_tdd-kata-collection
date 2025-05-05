@@ -1,9 +1,6 @@
 export const prettyDiamond = (letter: string) => {
   const alphabet = ["A", "B", "C", "D", "E"];
-  if (letter === "A") {
-    const indexOfAlphabet = alphabet.findIndex((d) => d == "A");
-    return [alphabet[indexOfAlphabet]];
-  }
+
   if (letter === "B") {
     const alpha = alphabet.findIndex((d) => d == "B");
     const facets = [
@@ -31,5 +28,10 @@ export const prettyDiamond = (letter: string) => {
   const width = alpha + alpha + 1;
   const middleIdx = Math.floor(width / 2);
   const row = "".padEnd(width, " ");
-  return Array.from({ length: width }).map(() => row);
+  return Array.from({ length: width }).map((_, y) =>
+    row
+      .split("")
+      .map((_, x) => (x == y ? letter : " "))
+      .join("")
+  );
 };
