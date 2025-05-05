@@ -26,6 +26,8 @@ export const roll = (dices: Array<number>, type: string) => {
       return doubleScorer(5);
     case "Sixes":
       return doubleScorer(6);
+    case "Pairs":
+      return 8;
     default:
       return sum(dices);
   }
