@@ -7,9 +7,13 @@ const makeDoubles = (dices: Array<number>)=> (digit: number) => {
   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
 }
 
+const makeCombo = (dices: Array<number>)=> (predicate: (d:number)=>boolean)=> [1,2,3,4,5,6]
+                           .map((digit) => predicate(dices.filter(d=>d===digit).length) ? digit : -1)
+                           .filter(d=>d>=0)
+
 export const roll = (dices: Array<number>, type: string) => {
   const doubleScorer = makeDoubles(dices);
-  
+  const comboScorer = makeCombo(dices);
   switch (type) {
   
     case "Yatze":
@@ -27,25 +31,19 @@ export const roll = (dices: Array<number>, type: string) => {
     case "Sixes":
       return doubleScorer(6);
     case "Pairs":
-      const pairCombos = [1,2,3,4,5,6]
-                           .map((digit) => dices.filter(d=>d===digit).length >= 2 ? digit : -1)
-                           .filter(d=>d>=0)
+      const pairCombos = comboScorer((d)=>d >=2)
 
       if (pairCombos.length !==2) return 0;
 
       return Math.max(...pairCombos) *2
     case "Two Pairs":
-      const twoCombos = [1,2,3,4,5,6]
-                           .map((digit) => dices.filter(d=>d===digit).length === 2 ? digit : -1)
-                           .filter(d=>d>=0)
+      const twoCombos = comboScorer((d)=>d ==2)
 
       if (twoCombos.length !==2) return 0;
 
       return twoCombos.reduce((acc,cur)=>cur*2+acc,0);
     case "Three of a Kind":
-      const threeCombos = [1,2,3,4,5,6]
-                           .map((digit) => dices.filter(d=>d===digit).length === 3 ? digit : -1)
-                           .filter(d=>d>=0)
+      const threeCombos = comboScorer((d)=>d ==3)
 
       if (threeCombos.length == 0) return 0;
 
