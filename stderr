@@ -1,8 +1,8 @@
 PASS ./yatze.test.ts
   Chance
-    ✓ roll 5 dice (2 ms)
+    ✓ roll 5 dice (3 ms)
   Yatze
-    ✓ roll 5 dice successfully (2 ms)
+    ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully (1 ms)
@@ -11,22 +11,23 @@ PASS ./yatze.test.ts
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully (1 ms)
   Threes, Fours, Fives, Sixes
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (3 ms)
+    ✓ roll 5 dice unsuccessfully
   Pairs
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Two Pairs
-    ✓ roll 5 dice successfully
+    ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Three of a Kind
-    ✓ roll 5 dice successfully (2 ms)
-    ✓ roll 5 dice unsuccessfully
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Four of a Kind
     ✓ roll 5 dice successfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
 
 Test Suites: 1 passed, 1 total
-Tests:       16 passed, 16 total
+Tests:       17 passed, 17 total
 Snapshots:   0 total
-Time:        2.744 s
+Time:        2.771 s
 Ran all test suites.

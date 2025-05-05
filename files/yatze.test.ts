@@ -87,10 +87,10 @@ describe('Three of a Kind', () => {
 describe('Four of a Kind', () => {
   it('roll 5 dice successfully', () => {
     expect(roll([2,2,2,2,5],"Four of a Kind")).toEqual(8);
-//    expect(roll([3,5,5,4,5],"Four of a Kind")).toEqual(15);
+    expect(roll([3,5,5,5,5],"Four of a Kind")).toEqual(20);
   })
-//  it('roll 5 dice unsuccessfully', () => {
-//    expect(roll([2,2,2,5,5],"Four of a Kind")).toEqual(0);
-//    expect(roll([2,2,2,2,2],"Four of a Kind")).toEqual(0);
-//  })
+  it('roll 5 dice unsuccessfully', () => {
+    expect(roll([2,2,2,5,5],"Four of a Kind")).toEqual(0);
+    expect(roll([2,2,2,2,2],"Four of a Kind")).toEqual(0);
+  })
 });
