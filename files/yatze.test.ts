@@ -76,6 +76,7 @@ describe('Two Pairs', () => {
 describe('Three of a Kind', () => {
   it('roll 5 dice successfully', () => {
     expect(roll([3,3,3,4,5],"Three of a Kind")).toEqual(9);
+    expect(roll([3,5,5,4,5],"Three of a Kind")).toEqual(15);
   })
 //  it('roll 5 dice unsuccessfully', () => {
 //    expect(roll([3,3,4,5,6],"Three of a Kind")).toEqual(0);
