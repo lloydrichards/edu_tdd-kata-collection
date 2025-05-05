@@ -16,7 +16,8 @@ export const roll = (dices: Array<number>, type: string) => {
   const doubleScorer = makeDoubles(dices);
   const comboScorer = makeCombo(dices);
   switch (type) {
-  
+    case "Chance":
+      return sum(dices);
     case "Yatze":
       return dices.reduce((acc,cur)=>acc && cur===dices[0],true) ? 50 : 0;
     case "Ones":
@@ -58,6 +59,6 @@ export const roll = (dices: Array<number>, type: string) => {
     case "Small Straight":
       return dices.map((d,idx)=>d==idx+1).every(Boolean) ? 15 : 0
     default:
-      return sum(dices);
+      throw new Error("unhandled types")
   }
 }

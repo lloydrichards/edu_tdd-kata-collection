@@ -2,25 +2,25 @@ FAIL ./yatze.test.ts
   Chance
     ✓ roll 5 dice (2 ms)
   Yatze
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully
-  Ones
     ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
+  Ones
+    ✓ roll 5 dice successfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Twos
     ✓ roll 5 dice successfully (2 ms)
     ✓ roll 5 dice unsuccessfully
   Threes, Fours, Fives, Sixes
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Pairs
-    ✓ roll 5 dice successfully
+    ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Two Pairs
-    ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully
+    ✓ roll 5 dice successfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Three of a Kind
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully (1 ms)
   Four of a Kind
     ✓ roll 5 dice successfully
@@ -30,46 +30,42 @@ FAIL ./yatze.test.ts
     ✓ roll 5 dice unsuccessfully
   Large Straight
     ✕ roll 5 dice successfully (3 ms)
-    ✕ roll 5 dice unsuccessfully (2 ms)
+    ✕ roll 5 dice unsuccessfully (1 ms)
 
   ● Large Straight › roll 5 dice successfully
 
-    expect(received).toEqual(expected) // deep equality
+    unhandled types
 
-    Expected: 20
-    Received: 14.6
+      60 |       return dices.map((d,idx)=>d==idx+1).every(Boolean) ? 15 : 0
+      61 |     default:
+    > 62 |       throw new Error("unhandled types")
+         |             ^
+      63 |   }
+      64 | }
+      65 | 
 
-      108 | describe('Large Straight', () => {
-      109 |   it('roll 5 dice successfully', () => {
-    > 110 |     expect(roll([2,3,4,5.6],"Large Straight")).toEqual(20);
-          |                                                ^
-      111 |   })
-      112 |   it('roll 5 dice unsuccessfully', () => {
-      113 |     expect(roll([2,2,2,5,5],"Large Straight")).toEqual(0);
-
-      at Object.<anonymous> (yatze.test.ts:110:48)
+      at Object.exports.roll (yatze.ts:62:13)
+      at Object.<anonymous> (yatze.test.ts:110:12)
 
   ● Large Straight › roll 5 dice unsuccessfully
 
-    expect(received).toEqual(expected) // deep equality
+    unhandled types
 
-    Expected: 0
-    Received: 16
+      60 |       return dices.map((d,idx)=>d==idx+1).every(Boolean) ? 15 : 0
+      61 |     default:
+    > 62 |       throw new Error("unhandled types")
+         |             ^
+      63 |   }
+      64 | }
+      65 | 
 
-      111 |   })
-      112 |   it('roll 5 dice unsuccessfully', () => {
-    > 113 |     expect(roll([2,2,2,5,5],"Large Straight")).toEqual(0);
-          |                                                ^
-      114 |     expect(roll([2,2,2,2,2],"Large Straight")).toEqual(0);
-      115 |   })
-      116 | });
-
-      at Object.<anonymous> (yatze.test.ts:113:48)
+      at Object.exports.roll (yatze.ts:62:13)
+      at Object.<anonymous> (yatze.test.ts:113:12)
 
 Test Suites: 1 failed, 1 total
 Tests:       2 failed, 19 passed, 21 total
 Snapshots:   0 total
-Time:        2.831 s
+Time:        2.865 s
 Ran all test suites.
 npm ERR! code ELIFECYCLE
 npm ERR! errno 1
@@ -80,4 +76,4 @@ npm ERR! Failed at the @ test script.
 npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
 
 npm ERR! A complete log of this run can be found in:
-npm ERR!     /home/sandbox/.npm/_logs/2025-05-05T08_03_49_945Z-debug.log
+npm ERR!     /home/sandbox/.npm/_logs/2025-05-05T08_04_50_695Z-debug.log
