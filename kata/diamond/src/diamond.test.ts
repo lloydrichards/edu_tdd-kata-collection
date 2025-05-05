@@ -35,4 +35,8 @@ describe("C", () => {
   it("middle as `C   C`", () => {
     expect(prettyDiamond("C")).toInclude(`C   C`);
   });
+  it("return start and end with ` A `'s", () => {
+    expect(prettyDiamond("C")).toStartWith(`  A  `);
+    expect(prettyDiamond("C")).toEndWith(`  A  `);
+  });
 });
