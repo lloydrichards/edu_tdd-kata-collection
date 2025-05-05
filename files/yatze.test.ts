@@ -94,3 +94,13 @@ describe('Four of a Kind', () => {
     expect(roll([2,2,2,2,2],"Four of a Kind")).toEqual(0);
   })
 });
+
+describe('Small Straight', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([1,2,3,4,5],"Small Straight")).toEqual(15);
+  })
+  it('roll 5 dice unsuccessfully', () => {
+    expect(roll([2,2,2,5,5],"Small Straight")).toEqual(0);
+    expect(roll([2,2,2,2,2],"Small Straight")).toEqual(0);
+  })
+});
