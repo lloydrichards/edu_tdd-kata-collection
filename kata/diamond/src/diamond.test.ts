@@ -22,4 +22,11 @@ describe("B", () => {
     expect(prettyDiamond("B")).toStartWith(` A `);
     expect(prettyDiamond("B")).toEndWith(` A `);
   });
+  it("should be a diamond", () => {
+    expect(prettyDiamond("B")).toBe(
+      ` A 
+B B
+ A `
+    );
+  });
 });
