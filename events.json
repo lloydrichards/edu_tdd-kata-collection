@@ -459,5 +459,37 @@
       30,
       179568
     ]
+  },
+  {
+    "duration": 3.235769,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 29,
+    "time": [
+      2025,
+      5,
+      4,
+      21,
+      39,
+      29,
+      808357
+    ]
+  },
+  {
+    "duration": 6.747543,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 30,
+    "time": [
+      2025,
+      5,
+      4,
+      21,
+      39,
+      59,
+      575240
+    ]
   }
 ]

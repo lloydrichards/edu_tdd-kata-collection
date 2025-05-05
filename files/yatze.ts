@@ -8,28 +8,25 @@ const makeDoubles = (dices: Array<number>)=> (digit: number) => {
 }
 
 export const roll = (dices: Array<number>, type: string) => {
-  if(type==="Yatze"){
-   return dices.reduce((acc,cur)=>acc && cur===dices[0],true) ? 50 : 0; 
-  }
-  
   const doubleScorer = makeDoubles(dices);
-  if(type==="Ones"){
-   return doubleScorer(1)
+  
+  switch (type) {
+  
+    case "Yatze":
+      return dices.reduce((acc,cur)=>acc && cur===dices[0],true) ? 50 : 0;
+    case "Ones":
+      return doubleScorer(1);
+    case "Twos":
+      return doubleScorer(2);
+    case "Threes":
+      return doubleScorer(3);
+    case "Fours":
+      return doubleScorer(4);
+    case "Fives":
+      return doubleScorer(5);
+    case "Sixes":
+      return doubleScorer(6);
+    default:
+      return sum(dices);
   }
-  if(type==="Twos"){
-   return doubleScorer(2)
-  }
-    if(type==="Threes"){
-    return doubleScorer(3)
-  }
-    if(type==="Fours"){
-    return doubleScorer(4)
-  }
-    if(type==="Fives"){
-    return doubleScorer(5)
-  }
-    if(type==="Sixes"){
-    return doubleScorer(6)
-  }
- return sum(dices); 
 }
