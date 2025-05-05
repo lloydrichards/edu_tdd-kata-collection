@@ -51,3 +51,9 @@ describe('Threes, Fours, Fives, Sixes', () => {
     expect(roll([1,2,2,2,4],"Sixes")).toEqual(0);
   })
 });
+
+describe('Pairs', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([3,3,3,4,4],"Pairs")).toEqual(8);
+  })
+});
