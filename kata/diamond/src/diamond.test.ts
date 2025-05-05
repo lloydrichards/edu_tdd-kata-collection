@@ -52,6 +52,15 @@ describe("C", () => {
       "  A  ",
     ]);
   });
+  it("should work with lowercase", () => {
+    expect(prettyDiamond("c")).toEqual([
+      "  A  ",
+      " B B ",
+      "C   C",
+      " B B ",
+      "  A  ",
+    ]);
+  });
 });
 describe("D", () => {
   it("should be a squared", () => {
