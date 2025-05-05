@@ -10,7 +10,7 @@ import { prettyDiamond } from "./diamond";
 
 describe("A", () => {
   it("return only A", () => {
-    expect(prettyDiamond("A")).toEqual(`A`);
+    expect(prettyDiamond("A")).toEqual([`A`]);
   });
 });
 
@@ -23,11 +23,7 @@ describe("B", () => {
     expect(prettyDiamond("B")).toEndWith(` A `);
   });
   it("should be a diamond", () => {
-    expect(prettyDiamond("B")).toBe(
-      ` A 
-B B
- A `
-    );
+    expect(prettyDiamond("B")).toEqual([" A ", "B B", " A "]);
   });
 });
 
@@ -40,12 +36,12 @@ describe("C", () => {
     expect(prettyDiamond("C")).toEndWith(`  A  `);
   });
   it("should be a diamond", () => {
-    expect(prettyDiamond("C")).toBe(
-      `  A  
- B B 
- C   C
- B B 
-  A  `
-    );
+    expect(prettyDiamond("C")).toEqual([
+      "  A  ",
+      " B B ",
+      "C   C",
+      " B B ",
+      "  A  ",
+    ]);
   });
 });
