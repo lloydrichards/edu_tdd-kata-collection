@@ -12,7 +12,7 @@ describe('Yatze', () => {
     expect(roll([1,1,1,1,1],"Yatze")).toEqual(50);
     expect(roll([5,5,5,5,5],"Yatze")).toEqual(50);
   });
-    it('roll 5 dice unsuccessfully', () => {
+  it('roll 5 dice unsuccessfully', () => {
     expect(roll([1,1,1,2,1],"Yatze")).toEqual(0);
   });
 });
@@ -22,7 +22,7 @@ describe('Ones', () => {
     expect(roll([1,1,2,4,4],"Ones")).toEqual(2);
     expect(roll([1,1,1,4,4],"Ones")).toEqual(2);
   })
-    it('roll 5 dice unsuccessfully', () => {
+  it('roll 5 dice unsuccessfully', () => {
     expect(roll([1,2,2,4,4],"Ones")).toEqual(0);
   })
 });
@@ -32,7 +32,7 @@ describe('Twos', () => {
     expect(roll([1,2,2,4,4],"Twos")).toEqual(4);
     expect(roll([1,2,2,2,4],"Twos")).toEqual(4);
   })
-    it('roll 5 dice unsuccessfully', () => {
+  it('roll 5 dice unsuccessfully', () => {
     expect(roll([1,1,2,4,4],"Twos")).toEqual(0);
   })
 });
@@ -44,7 +44,7 @@ describe('Threes, Fours, Fives, Sixes', () => {
     expect(roll([5,2,5,2,4],"Fives")).toEqual(10);
     expect(roll([1,2,6,6,4],"Sixes")).toEqual(12);
   })
-    it('roll 5 dice unsuccessfully', () => {
+  it('roll 5 dice unsuccessfully', () => {
     expect(roll([1,2,2,4,4],"Threes")).toEqual(0);
     expect(roll([1,2,2,2,4],"Fours")).toEqual(0);
     expect(roll([1,2,2,2,4],"Fives")).toEqual(0);
@@ -57,7 +57,7 @@ describe('Pairs', () => {
     expect(roll([3,3,3,4,4],"Pairs")).toEqual(8);
     expect(roll([1,1,6,2,6],"Pairs")).toEqual(12);
   })
-      it('roll 5 dice unsuccessfully', () => {
+  it('roll 5 dice unsuccessfully', () => {
     expect(roll([3,3,3,4,1],"Pairs")).toEqual(0);
   })
 });
@@ -67,8 +67,18 @@ describe('Two Pairs', () => {
     expect(roll([1,1,2,3,3],"Two Pairs")).toEqual(8);
     expect(roll([1,2,2,3,3],"Two Pairs")).toEqual(10);
   })
-      it('roll 5 dice unsuccessfully', () => {
+  it('roll 5 dice unsuccessfully', () => {
     expect(roll([1,1,2,2,2],"Two Pairs")).toEqual(0);
     expect(roll([1,1,2,3,4],"Two Pairs")).toEqual(0);
   })
+});
+
+describe('Three of a Kind', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([3,3,3,4,5],"Three of a Kind")).toEqual(9);
+  })
+//  it('roll 5 dice unsuccessfully', () => {
+//    expect(roll([3,3,4,5,6],"Three of a Kind")).toEqual(0);
+//    expect(roll([3,3,3,3,1],"Three of a Kind")).toEqual(0);
+//  })
 });
