@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "lint": "eslint --fix **/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.26.0",
+    "@types/bun": "^1.2.12",
+    "eslint": "^9.26.0",
+    "globals": "^16.0.0",
+    "typescript-eslint": "^8.31.1"
+  }
+}

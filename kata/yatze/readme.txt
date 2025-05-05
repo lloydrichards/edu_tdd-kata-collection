@@ -1,17 +1,3 @@
-- [x] roll chance dice get low_score
-- [x] roll chance dice get high_score
-- [ ] roll yatzy successfully
-- [ ] roll yatzy unsuccessfully
-- [ ] roll ones successfully
-- [ ] roll ones unsuccessfully
-- [ ] roll twos
-- [ ] roll threes
-- [ ] roll fours
-- [ ] roll fives
-- [ ] roll sixes
-- [ ] roll pairs successfully
-- [ ] roll pairs unsuccessfully
-
 The game of yatzy is a simple dice game. Each player rolls five six-sided dice. The player places the roll in a category, such as ones, twos, fives, pair, two pairs etc (see below). If the roll is compatible with the category, the player gets a score for the roll according to the rules. If the roll is not compatible with the category, the player scores zero for the roll.
 
 For example, if a player rolls 5,6,5,5,2 and scores the dice in the fives category they would score 15 (three fives).
