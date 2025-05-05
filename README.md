@@ -12,6 +12,8 @@ the `./kata` directory.
 
   ```txt
   . kata
+  ├── 🗂️ _template # Blank kata for setup
+  ├── 🗂️ diamond   # Create a pretty alphabet diamond
   └── 🗂️ yatze     # Simple dice game of Yatze
   ```
 

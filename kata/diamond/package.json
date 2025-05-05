@@ -1,5 +1,5 @@
 {
-  "name": "template",
+  "name": "diamond",
   "scripts": {
     "test": "bun test",
     "lint": "eslint --fix **/*.ts",
