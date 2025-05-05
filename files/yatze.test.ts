@@ -118,6 +118,7 @@ describe('Large Straight', () => {
 describe('Full House', () => {
   it('roll 5 dice successfully', () => {
     expect(roll([1,1,2,2,2],"Full House")).toEqual(8);
+    expect(roll([5,5,2,2,2],"Full House")).toEqual(16);
   })
   it('roll 5 dice unsuccessfully', () => {
     expect(roll([2,2,3,3,4],"Full House")).toEqual(0);

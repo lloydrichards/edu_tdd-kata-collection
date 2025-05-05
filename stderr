@@ -6,37 +6,37 @@ PASS ./yatze.test.ts
     ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Twos
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Threes, Fours, Fives, Sixes
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Pairs
     ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Two Pairs
-    ✓ roll 5 dice successfully (2 ms)
-    ✓ roll 5 dice unsuccessfully
-  Three of a Kind
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully (2 ms)
+  Three of a Kind
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Four of a Kind
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully (1 ms)
   Small Straight
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
-  Large Straight
-    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
-  Full House
+  Large Straight
     ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
+  Full House
+    ✓ roll 5 dice successfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
 
 Test Suites: 1 passed, 1 total
 Tests:       23 passed, 23 total
 Snapshots:   0 total
-Time:        2.798 s
+Time:        2.877 s
 Ran all test suites.
