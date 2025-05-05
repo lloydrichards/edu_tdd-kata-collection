@@ -7,7 +7,8 @@ const makeDoubles = (dices: Array<number>)=> (digit: number) => {
   return filtered.length >= 2 ? sum(filtered.slice(0,2)) : 0
 }
 
-const makeCombo = (dices: Array<number>)=> (predicate: (d:number)=>boolean)=> [1,2,3,4,5,6]
+const makeCombo = (dices: Array<number>) => 
+                  (predicate: (d:number)=>boolean) => [1,2,3,4,5,6]
                            .map((digit) => predicate(dices.filter(d=>d===digit).length) ? digit : -1)
                            .filter(d=>d>=0)
 
