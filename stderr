@@ -1,12 +1,12 @@
 PASS ./yatze.test.ts
   Chance
-    ✓ roll 5 dice (4 ms)
+    ✓ roll 5 dice (2 ms)
   Yatze
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
 
 Test Suites: 1 passed, 1 total
 Tests:       3 passed, 3 total
 Snapshots:   0 total
-Time:        2.75 s
+Time:        2.747 s
 Ran all test suites.
