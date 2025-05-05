@@ -1,5 +1,5 @@
 export const prettyDiamond = (letter: string) => {
-  const alphabet = ["A", "B", "C", "D"];
+  const alphabet = ["A", "B", "C", "D", "E"];
   if (letter === "A") {
     const indexOfAlphabet = alphabet.findIndex((d) => d == "A");
     return [alphabet[indexOfAlphabet]];
@@ -26,13 +26,10 @@ export const prettyDiamond = (letter: string) => {
     ];
   }
 
-  return [
-    "   A   ",
-    "  B B  ",
-    " C   C ",
-    "D     D",
-    " C   C ",
-    "  B B  ",
-    "   A   ",
-  ];
+  const alpha = alphabet.findIndex((d) => d == letter);
+
+  const width = alpha + alpha + 1;
+  const middleIdx = Math.floor(width / 2);
+  const row = "".padEnd(width, " ");
+  return Array.from({ length: width }).map(() => row);
 };

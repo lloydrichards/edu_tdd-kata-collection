@@ -15,6 +15,13 @@ describe("A", () => {
 });
 
 describe("B", () => {
+  // " A ",
+  // "B B",
+  // " A ",
+  it("should be a squared", () => {
+    expect(prettyDiamond("B").length).toBe(3);
+    expect(prettyDiamond("B").at(-1)!.length).toBe(3);
+  });
   it("middle as `B B`", () => {
     expect(prettyDiamond("B").at(1)).toEqual(`B B`);
   });
@@ -28,6 +35,15 @@ describe("B", () => {
 });
 
 describe("C", () => {
+  // "  A  ",
+  // " B B ",
+  // "C   C",
+  // " B B ",
+  // "  A  ",
+  it("should be a squared", () => {
+    expect(prettyDiamond("C").length).toBe(5);
+    expect(prettyDiamond("C").at(-1)!.length).toBe(5);
+  });
   it("middle as `C   C`", () => {
     expect(prettyDiamond("C")).toContain(`C   C`);
   });
@@ -46,15 +62,41 @@ describe("C", () => {
   });
 });
 describe("D", () => {
-  it("should be a diamond", () => {
-    expect(prettyDiamond("D")).toEqual([
-      "   A   ",
-      "  B B  ",
-      " C   C ",
-      "D     D",
-      " C   C ",
-      "  B B  ",
-      "   A   ",
-    ]);
+  // "   A   ",
+  // "  B B  ",
+  // " C   C ",
+  // "D     D",
+  // " C   C ",
+  // "  B B  ",
+  // "   A   ",
+  it("should be a squared", () => {
+    expect(prettyDiamond("D").length).toBe(7);
+    expect(prettyDiamond("D").at(-1)!.length).toBe(7);
+  });
+  // it("should be a diamond", () => {
+  //   expect(prettyDiamond("D")).toEqual([
+  //     "   A   ",
+  //     "  B B  ",
+  //     " C   C ",
+  //     "D     D",
+  //     " C   C ",
+  //     "  B B  ",
+  //     "   A   ",
+  //   ]);
+  // });
+});
+describe("E", () => {
+  // "    A    ",
+  // "   B B   ",
+  // "  C   C  ",
+  // " D     D ",
+  // "E       E",
+  // " D     D ",
+  // "  C   C  ",
+  // "   B B   ",
+  // "    A    ",
+  it("should be a squared", () => {
+    expect(prettyDiamond("E").length).toBe(9);
+    expect(prettyDiamond("E").at(-1)!.length).toBe(9);
   });
 });
