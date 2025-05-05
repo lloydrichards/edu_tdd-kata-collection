@@ -1,5 +1,5 @@
-- [ ] roll chance dice get low_score
-- [ ] roll chance dice get high_score
+- [x] roll chance dice get low_score
+- [x] roll chance dice get high_score
 - [ ] roll yatzy successfully
 - [ ] roll yatzy unsuccessfully
 - [ ] roll ones successfully
