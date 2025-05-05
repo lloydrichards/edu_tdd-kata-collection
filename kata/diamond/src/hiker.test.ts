@@ -1,4 +1,4 @@
-import { answer } from "./hiker";
+import { answer, prettyDiamond } from "./hiker";
 import { expect, describe, it } from "bun:test";
 
 describe("answer", () => {
@@ -13,3 +13,9 @@ describe("answer", () => {
 // - [ ] When C is given, return middle as `C  C`
 // - [ ] When C is given, return two ` B B `'s
 // - [ ] When C is given, return head and tail as `  A  `
+
+describe("only A", () => {
+  it("return only A", () => {
+    expect(prettyDiamond("A")).toEqual(`A`);
+  });
+});
