@@ -971,5 +971,37 @@
       23,
       961161
     ]
+  },
+  {
+    "duration": 3.147497,
+    "colour": "amber",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 61,
+    "time": [
+      2025,
+      5,
+      5,
+      7,
+      58,
+      53,
+      138674
+    ]
+  },
+  {
+    "duration": 6.775179,
+    "colour": "green",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 62,
+    "time": [
+      2025,
+      5,
+      5,
+      7,
+      59,
+      14,
+      299573
+    ]
   }
 ]

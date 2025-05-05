@@ -1,8 +1,8 @@
-FAIL ./yatze.test.ts
+PASS ./yatze.test.ts
   Chance
-    ✓ roll 5 dice (3 ms)
+    ✓ roll 5 dice (2 ms)
   Yatze
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully (2 ms)
     ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully (1 ms)
@@ -12,48 +12,21 @@ FAIL ./yatze.test.ts
     ✓ roll 5 dice unsuccessfully (1 ms)
   Threes, Fours, Fives, Sixes
     ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (3 ms)
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Pairs
-    ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully
+    ✓ roll 5 dice successfully
+    ✓ roll 5 dice unsuccessfully (1 ms)
   Two Pairs
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Three of a Kind
-    ✓ roll 5 dice successfully (1 ms)
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (2 ms)
+    ✓ roll 5 dice unsuccessfully
   Four of a Kind
-    ✕ roll 5 dice successfully (3 ms)
+    ✓ roll 5 dice successfully
 
-  ● Four of a Kind › roll 5 dice successfully
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 8
-    Received: 13
-
-      87 | describe('Four of a Kind', () => {
-      88 |   it('roll 5 dice successfully', () => {
-    > 89 |     expect(roll([2,2,2,2,5],"Four of a Kind")).toEqual(8);
-         |                                                ^
-      90 | //    expect(roll([3,5,5,4,5],"Four of a Kind")).toEqual(15);
-      91 |   })
-      92 | //  it('roll 5 dice unsuccessfully', () => {
-
-      at Object.<anonymous> (yatze.test.ts:89:48)
-
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 15 passed, 16 total
+Test Suites: 1 passed, 1 total
+Tests:       16 passed, 16 total
 Snapshots:   0 total
-Time:        2.776 s
+Time:        2.744 s
 Ran all test suites.
-npm ERR! code ELIFECYCLE
-npm ERR! errno 1
-npm ERR! @ test: `jest --maxWorkers=2`
-npm ERR! Exit status 1
-npm ERR! 
-npm ERR! Failed at the @ test script.
-npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-
-npm ERR! A complete log of this run can be found in:
-npm ERR!     /home/sandbox/.npm/_logs/2025-05-05T07_58_23_628Z-debug.log

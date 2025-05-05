@@ -48,7 +48,13 @@ export const roll = (dices: Array<number>, type: string) => {
 
       if (threeCombos.length == 0) return 0;
 
-      return threeCombos[0]*3
+      return threeCombos[0]*3;
+    case "Four of a Kind":
+      const fourCombos = comboScorer((d)=>d ==4)
+
+      if (fourCombos.length == 0) return 0;
+
+      return fourCombos[0]*4
     default:
       return sum(dices);
   }
