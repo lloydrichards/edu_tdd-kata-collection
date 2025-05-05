@@ -299,5 +299,21 @@
       17,
       468511
     ]
+  },
+  {
+    "duration": 6.726088,
+    "colour": "red",
+    "predicted": "none",
+    "revert_if_wrong": "off",
+    "index": 19,
+    "time": [
+      2025,
+      5,
+      4,
+      21,
+      25,
+      35,
+      429495
+    ]
   }
 ]
