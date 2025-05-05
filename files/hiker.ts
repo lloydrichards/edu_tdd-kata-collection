@@ -1,4 +1,4 @@
 
 export const roll = (dices: Array<number>, type: string) => {
- return 14; 
+ return dices.reduce((acc,cur)=>acc+cur,0); 
 }
