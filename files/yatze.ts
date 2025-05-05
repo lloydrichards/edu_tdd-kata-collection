@@ -42,6 +42,14 @@ export const roll = (dices: Array<number>, type: string) => {
       if (twoCombos.length !==2) return 0;
 
       return twoCombos.reduce((acc,cur)=>cur*2+acc,0);
+    case "Three of a Kind":
+      const threeCombos = [1,2,3,4,5,6]
+                           .map((digit) => dices.filter(d=>d===digit).length === 3 ? digit : -1)
+                           .filter(d=>d>=0)
+
+      if (threeCombos.length !==3) return 0;
+
+      return 9
     default:
       return sum(dices);
   }
