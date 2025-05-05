@@ -1,0 +1,13 @@
+{
+  "name": "poker_hands",
+  "scripts": {
+    "test": "bun test",
+    "lint": "eslint --fix **/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@types/bun": "^1.2.12"
+  }
+}
