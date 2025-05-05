@@ -1,56 +1,29 @@
-FAIL ./yatze.test.ts
+PASS ./yatze.test.ts
   Chance
     ✓ roll 5 dice (3 ms)
   Yatze
-    ✓ roll 5 dice successfully
+    ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Ones
     ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Twos
-    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice successfully
     ✓ roll 5 dice unsuccessfully
   Threes, Fours, Fives, Sixes
-    ✓ roll 5 dice successfully
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice successfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Pairs
-    ✓ roll 5 dice successfully
+    ✓ roll 5 dice successfully (1 ms)
     ✓ roll 5 dice unsuccessfully
   Two Pairs
     ✓ roll 5 dice successfully (2 ms)
-    ✓ roll 5 dice unsuccessfully (1 ms)
+    ✓ roll 5 dice unsuccessfully
   Three of a Kind
-    ✕ roll 5 dice successfully (2 ms)
+    ✓ roll 5 dice successfully
 
-  ● Three of a Kind › roll 5 dice successfully
-
-    expect(received).toEqual(expected) // deep equality
-
-    Expected: 9
-    Received: 0
-
-      76 | describe('Three of a Kind', () => {
-      77 |   it('roll 5 dice successfully', () => {
-    > 78 |     expect(roll([3,3,3,4,5],"Three of a Kind")).toEqual(9);
-         |                                                 ^
-      79 |   })
-      80 | //  it('roll 5 dice unsuccessfully', () => {
-      81 | //    expect(roll([3,3,4,5,6],"Three of a Kind")).toEqual(0);
-
-      at Object.<anonymous> (yatze.test.ts:78:49)
-
-Test Suites: 1 failed, 1 total
-Tests:       1 failed, 13 passed, 14 total
+Test Suites: 1 passed, 1 total
+Tests:       14 passed, 14 total
 Snapshots:   0 total
-Time:        2.807 s
+Time:        2.845 s
 Ran all test suites.
-npm ERR! code ELIFECYCLE
-npm ERR! errno 1
-npm ERR! @ test: `jest --maxWorkers=2`
-npm ERR! Exit status 1
-npm ERR! 
-npm ERR! Failed at the @ test script.
-npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-
-npm ERR! A complete log of this run can be found in:
-npm ERR!     /home/sandbox/.npm/_logs/2025-05-05T07_50_45_313Z-debug.log

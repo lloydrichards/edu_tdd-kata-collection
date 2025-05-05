@@ -47,7 +47,7 @@ export const roll = (dices: Array<number>, type: string) => {
                            .map((digit) => dices.filter(d=>d===digit).length === 3 ? digit : -1)
                            .filter(d=>d>=0)
 
-      if (threeCombos.length !==3) return 0;
+      if (threeCombos.length == 0) return 0;
 
       return 9
     default:
