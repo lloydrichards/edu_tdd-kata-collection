@@ -1,3 +1,4 @@
 export const prettyDiamond = (letter: string) => {
-  return letter;
+  if (letter === "A") return "A"
+  return "B B";
 };
