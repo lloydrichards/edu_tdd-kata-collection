@@ -16,3 +16,9 @@ describe('Yatze', () => {
     expect(roll([1,1,1,2,1],"Yatze")).toEqual(0);
   });
 });
+
+describe('Ones', () => {
+  it('roll 5 dice successfully', () => {
+    expect(roll([1,1,2,4,4],"Ones")).toEqual(2);
+  })
+});
