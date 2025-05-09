@@ -66,5 +66,8 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
       ? blackHighestCard
       : whiteHighestCard;
 
-  return `White wins - high card: ${labels[highestCard.rank]}`;
+  const winner =
+    blackHighestCard.rank > whiteHighestCard.rank ? "Black" : "White";
+
+  return `${winner} wins - high card: ${labels[highestCard.rank]}`;
 };
