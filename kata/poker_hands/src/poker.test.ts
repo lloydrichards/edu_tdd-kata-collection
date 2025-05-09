@@ -171,5 +171,13 @@ describe("pokerGame", () => {
         )
       ).toEqual("White wins - two pairs: Jack");
     });
+    it("should return the high card on both tie", () => {
+      expect(
+        pokerGame(
+          ["4H", "4D", "9S", "9S", "JD"],
+          ["2C", "4H", "4S", "9C", "9H"]
+        )
+      ).toEqual("Black wins - two pairs: Nine");
+    });
   });
 });
