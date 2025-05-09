@@ -62,10 +62,21 @@ export const parseCard = (card: string): Card => {
   };
 };
 
-const hasSinglePair = (hand: Card[]) => getPairs(hand).length === 2;
+const hasSinglePair = (hand: Card[]) => getSameRank(2)(hand).length === 2;
+const hasTwoPairs = (hand: Card[]) => getSameRank(2)(hand).length === 4;
+const hasThreeOfKind = (hand: Card[]) => getSameRank(3)(hand).length === 3;
+const hasFourOfKind = (hand: Card[]) => getSameRank(4)(hand).length === 4;
+const hasFullHouse = (hand: Card[]) =>
+  getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3;
 
 export const classifyHand = (hand: Card[]) => {
-  const hands: Array<[string, boolean]> = [["PAIR", hasSinglePair(hand)]];
+  const hands: Array<[string, boolean]> = [
+    ["FOUR_OF_KIND", hasFourOfKind(hand)],
+    ["FULL_HOUSE", hasFullHouse(hand)],
+    ["THREE_OF_KIND", hasThreeOfKind(hand)],
+    ["TWO_PAIR", hasTwoPairs(hand)],
+    ["PAIR", hasSinglePair(hand)],
+  ];
   const result = hands.find(([_, pred]) => pred);
 
   if (!result) return null;
@@ -80,7 +91,7 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
 
   const determineWinFor = makeWinningFor(blackHand, whiteHand);
 
-  const threeOfAKind = determineWinFor(getTriples);
+  const threeOfAKind = determineWinFor(getSameRank(3));
 
   if (threeOfAKind) {
     return `${threeOfAKind[0]} wins - three of a kind: ${threeOfAKind[1]?.label}`;
@@ -90,7 +101,7 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     return `${twoPairs[0]} wins - two pairs: ${twoPairs[1]?.label}`;
   }
 
-  const pairs = determineWinFor(getPairs);
+  const pairs = determineWinFor(getSameRank(2));
 
   if (pairs) {
     return `${pairs[0]} wins - pair: ${pairs[1]?.label}`;
@@ -140,8 +151,8 @@ const makeWinningFor =
   };
 
 const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
-  const blackPairs = getPairs(blackHand);
-  const whitePairs = getPairs(whiteHand);
+  const blackPairs = getSameRank(2)(blackHand);
+  const whitePairs = getSameRank(2)(whiteHand);
 
   const pair = (
     [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[]
@@ -169,13 +180,9 @@ const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
   return [pairWinner, pair.at(-1)] as const;
 };
 
-const getPairs = (blackHand: Card[]) =>
+const getSameRank = (n: number) => (blackHand: Card[]) =>
   blackHand.filter(
-    (c) => blackHand.filter((d) => d.rank == c.rank).length == 2
-  );
-const getTriples = (blackHand: Card[]) =>
-  blackHand.filter(
-    (c) => blackHand.filter((d) => d.rank == c.rank).length == 3
+    (c) => blackHand.filter((d) => d.rank == c.rank).length == n
   );
 
 const isEqual = (a?: Card, b?: Card) => a?.rank == b?.rank;
