@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { classifyHand, parseCard, pokerGame } from "./poker";
+import { classifyHand, parseCard, pokerGame, scoreHand } from "./poker";
 
 // - [x] should accept two hand of cards
 //        Input: Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH
@@ -193,8 +193,6 @@ describe("Three of a Kind", () => {
 });
 
 describe("classifyHand", () => {
-  // - Three of the cards in the hand have the same value.
-  // - Hands which both contain three of a kind are ranked by the value of the 3 cards.
   it("should classify as PAIR", () => {
     expect(classifyHand(["3H", "3D", "9S", "TC", "JD"].map(parseCard))).toEqual(
       "PAIR"
@@ -234,5 +232,22 @@ describe("classifyHand", () => {
     expect(classifyHand(["3H", "4H", "5H", "6H", "7H"].map(parseCard))).toEqual(
       "STRAIGHT_FLUSH"
     );
+  });
+});
+
+describe("scoreHand", () => {
+  it("should score as straight flush", () => {
+    expect(scoreHand(["3H", "4H", "5H", "6H", "7H"].map(parseCard))).toEqual({
+      rank: 1,
+      label: "straight flush",
+      subRank: 5,
+    });
+  });
+  it("should score as pair with high card", () => {
+    expect(scoreHand(["3H", "3D", "5H", "6H", "7H"].map(parseCard))).toEqual({
+      rank: 8,
+      label: "pair",
+      subRank: 5,
+    });
   });
 });
