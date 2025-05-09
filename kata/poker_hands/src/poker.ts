@@ -140,9 +140,13 @@ const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
   if (blackPairs.length != 4 && whitePairs.length != 4) return null;
 
   const pairWinner =
-    (blackPairs.at(0)?.rank || 0) > (whitePairs.at(0)?.rank || 0)
-      ? "Black"
-      : "White";
+    (blackPairs.at(0)?.rank || 0) == (whitePairs.at(0)?.rank || 0)
+      ? (blackPairs.at(-1)?.rank || 0) > (whitePairs.at(-1)?.rank || 0)
+        ? "Black"
+        : "White"
+      : (blackPairs.at(0)?.rank || 0) > (whitePairs.at(0)?.rank || 0)
+        ? "Black"
+        : "White";
 
   const pair = (
     [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[]
@@ -151,7 +155,10 @@ const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
 
   if (!winningPair) return null;
 
-  if (blackPairs.at(0)?.rank == whitePairs.at(0)?.rank) {
+  if (
+    blackPairs.at(0)?.rank == whitePairs.at(0)?.rank &&
+    blackPairs.at(-1)?.rank == whitePairs.at(-1)?.rank
+  ) {
     const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
     if (!winningHighCard) return null;
     return [winningHighCard[0], winningPair] as const;
