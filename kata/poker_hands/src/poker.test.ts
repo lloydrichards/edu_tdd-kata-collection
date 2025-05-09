@@ -31,4 +31,7 @@ describe("card", () => {
   it("should accept diamond cards", () => {
     expect(card("2D")).toEqual({ suit: "DIAMOND" });
   });
+  it("should accept spade cards", () => {
+    expect(card("2S")).toEqual({ suit: "SPADE" });
+  });
 });
