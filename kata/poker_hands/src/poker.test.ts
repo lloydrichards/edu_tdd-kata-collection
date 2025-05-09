@@ -39,5 +39,8 @@ describe("card", () => {
   });
   it("should not accept invalid suits", () => {
     expect(() => card("2X")).toThrow();
+    expect(() => card("2M")).toThrow();
+    expect(() => card("2P")).toThrow();
+    expect(() => card("2L")).toThrow();
   });
 });
