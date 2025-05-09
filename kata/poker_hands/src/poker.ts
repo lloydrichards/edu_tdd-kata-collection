@@ -39,5 +39,7 @@ export const card = (card: string) => {
 };
 
 export const pokerGame = (black: Array<string>, white: Array<string>) => {
+  const blackHand = black.map(card);
+  const whiteHand = white.map(card);
   return "White wins - high card: Ace";
 };
