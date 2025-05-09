@@ -181,3 +181,13 @@ describe("pokerGame", () => {
     });
   });
 });
+
+describe("Three of a Kind", () => {
+  // - Three of the cards in the hand have the same value.
+  // - Hands which both contain three of a kind are ranked by the value of the 3 cards.
+  it("should return three of a kind and value", () => {
+    expect(
+      pokerGame(["3H", "3D", "9S", "9C", "JD"], ["2C", "2H", "2S", "8C", "JH"])
+    ).toEqual("White wins - three of a kind: Two");
+  });
+});
