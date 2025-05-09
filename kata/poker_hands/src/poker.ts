@@ -61,15 +61,24 @@ export const parseCard = (card: string): Card => {
     rank,
   };
 };
+const hasFlush = (hand: Card[]) =>
+  hand.map((d) => d.suit).every((d) => d === hand.at(0)?.suit);
+const hasStraight = (hand: Card[]) =>
+  hand.reduce(
+    (acc, cur, idx) => acc && cur.rank === (hand[0]?.rank || -1) + idx,
+    true
+  );
 
 export const classifyHand = (hand: Card[]) => {
   const hands: Array<[string, boolean]> = [
+    ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand)],
     ["FOUR_OF_KIND", getSameRank(4)(hand).length === 4],
     [
       "FULL_HOUSE",
       getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
     ],
-    ["FLUSH", hand.map((d) => d.suit).every((d) => d === hand.at(0)?.suit)],
+    ["FLUSH", hasFlush(hand)],
+    ["STRAIGHT", hasStraight(hand)],
     ["THREE_OF_KIND", getSameRank(3)(hand).length === 3],
     ["TWO_PAIR", getSameRank(2)(hand).length === 4],
     ["PAIR", getSameRank(2)(hand).length === 2],
