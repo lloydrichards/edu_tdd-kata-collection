@@ -67,6 +67,9 @@ describe("card", () => {
 
 describe("pokerGame", () => {
   describe("high card", () => {
+    // - Hands which do not fit any higher category are ranked by the value of their highest card.
+    // - If the highest cards have the same value, the hands are ranked by the next highest, and so on.
+
     it("should accept two hand of cards", () => {
       expect(
         pokerGame(
@@ -108,6 +111,10 @@ describe("pokerGame", () => {
   });
 
   describe("pairs", () => {
+    // - 2 of the 5 cards in the hand have the same value.
+    // - Hands which both contain a pair are ranked by the value of the cards forming the pair.
+    // - If these values are the same, the hands are ranked by the values of the cards not forming the pair, in decreasing order.
+
     it("should return winner, pair and value", () => {
       expect(
         pokerGame(
@@ -131,6 +138,22 @@ describe("pokerGame", () => {
           ["2C", "3H", "4S", "JC", "JH"]
         )
       ).toBe("Black wins - pair: Jack");
+    });
+  });
+
+  describe("Two Pair", () => {
+    // - The hand contains 2 different pairs.
+    // - Hands which both contain 2 pairs are ranked by the value of their highest pair.
+    // - Hands with the same highest pair are ranked by the value of their other pair.
+    // - If these values are the same the hands are ranked by the value of the remaining card.
+
+    it("should return two pairs and value", () => {
+      expect(
+        pokerGame(
+          ["3H", "3D", "9S", "9C", "JD"],
+          ["2C", "3H", "4S", "8C", "JH"]
+        )
+      ).toContain("two pairs: Nine");
     });
   });
 });
