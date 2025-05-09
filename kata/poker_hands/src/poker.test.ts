@@ -1,7 +1,7 @@
-import { answer, pokerGame } from "./hiker";
-import { expect, describe, it } from "bun:test";
+import { describe, expect, it } from "bun:test";
+import { pokerGame } from "./poker";
 
-// - [ ] should accept two hand of cards
+// - [x] should accept two hand of cards
 // - [ ] should return winner with high card
 // - [ ] should accept heart cards
 // - [ ] should accept diamond cards
@@ -14,12 +14,6 @@ import { expect, describe, it } from "bun:test";
 // - [ ] should rank face cards above numbers
 // - [ ] should return winner with pair
 // - [ ] should return winner with two pair
-
-describe("answer", () => {
-  it("to life the universe and everything", () => {
-    expect(answer()).toEqual(42);
-  });
-});
 
 describe("pokerGame", () => {
   it("should accept two hand of cards", () => {
