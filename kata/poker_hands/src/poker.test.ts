@@ -32,6 +32,9 @@ describe("pokerGame", () => {
     expect(
       pokerGame(["2H", "3D", "5S", "9C", "JD"], ["2C", "3H", "4S", "8C", "QH"])
     ).toBe("White wins - high card: Queen");
+    expect(
+      pokerGame(["2H", "3D", "5S", "9C", "JD"], ["2C", "3H", "4S", "8C", "TH"])
+    ).toBe("Black wins - high card: Jack");
   });
 });
 
