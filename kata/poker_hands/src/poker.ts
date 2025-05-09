@@ -73,8 +73,9 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     (c, i) => blackHand.filter((d) => d.rank == c.rank).length == 2
   );
 
-  if (blackPairs.length > 0 || whitePairs.length > 0) {
-    return "pair:";
+  const pair = blackPairs.at(0) || whitePairs.at(0);
+  if (pair) {
+    return `pair: ${pair.label}`;
   }
 
   const blackHighestCard = blackHand.at(0);
