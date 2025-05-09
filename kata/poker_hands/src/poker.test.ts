@@ -116,5 +116,13 @@ describe("pokerGame", () => {
         )
       ).toBe("Black wins - pair: Nine");
     });
+    it("should return the higher pair", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "9S", "9C", "JD"],
+          ["2C", "3H", "4S", "JC", "JH"]
+        )
+      ).toBe("White wins - pair: Jack");
+    });
   });
 });
