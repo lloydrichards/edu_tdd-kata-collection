@@ -70,7 +70,7 @@ const hasStraight = (hand: Card[]) =>
   );
 
 export const classifyHand = (hand: Card[]) => {
-  const hands: Array<[string, boolean]> = [
+  const hands: Array<[keyof typeof ranks, boolean]> = [
     ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand)],
     ["FOUR_OF_KIND", getSameRank(4)(hand).length === 4],
     [
@@ -87,6 +87,47 @@ export const classifyHand = (hand: Card[]) => {
 
   if (!result) return null;
   return result[0];
+};
+const ranks = {
+  STRAIGHT_FLUSH: {
+    label: "straight flush",
+    rank: 1,
+  },
+  FOUR_OF_KIND: {
+    label: "four of a kind",
+    rank: 2,
+  },
+  FULL_HOUSE: {
+    label: "full house",
+    rank: 3,
+  },
+  FLUSH: {
+    label: "flush",
+    rank: 4,
+  },
+  STRAIGHT: {
+    label: "straight",
+    rank: 5,
+  },
+  THREE_OF_KIND: {
+    label: "three of a kind",
+    rank: 6,
+  },
+  TWO_PAIR: {
+    label: "two pair",
+    rank: 7,
+  },
+  PAIR: {
+    label: "pair",
+    rank: 8,
+  },
+};
+
+export const scoreHand = (hand: Card[]) => {
+  const type = classifyHand(hand);
+  if (!type) return null;
+
+  return { ...ranks[type], subRank: getSameRank(1)(hand).at(-1)?.rank };
 };
 
 export const pokerGame = (black: Array<string>, white: Array<string>) => {
