@@ -16,7 +16,8 @@ const getSuitFor = (card: string) => {
 const getValueFor = (card: string) => {
   const validFace: Array<any> = ["J", "Q", "K", "A"];
   if (validFace.includes(card[0])) {
-    return 10;
+    const idx = validFace.findIndex((v) => v === card[0]);
+    return [10, idx + 6];
   }
   const validValues: Array<any> = ["2", "3", "4", "5", "6", "7", "8", "9", "T"];
   const value = card[0];
@@ -24,13 +25,14 @@ const getValueFor = (card: string) => {
 
   if (valueIdx === -1) throw new Error("value is not accepted");
 
-  return valueIdx + 2;
+  return [valueIdx + 2, valueIdx];
 };
 
 export const card = (card: string) => {
   return {
     suit: getSuitFor(card),
-    value: getValueFor(card),
+    value: getValueFor(card)[0],
+    rank: getValueFor(card)[1],
   };
 };
 
