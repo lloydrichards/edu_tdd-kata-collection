@@ -90,12 +90,9 @@ const determineHighCardWinner = (blackHand: Card[], whiteHand: Card[]) => {
 
   if (!winnerCard) return null;
 
-  const blackHighestCard = blackHand.at(0);
-  const whiteHighestCard = whiteHand.at(0);
-
   return winnerCard.blackRank > winnerCard.whiteRank
-    ? (["Black", blackHighestCard] as const)
-    : (["White", whiteHighestCard] as const);
+    ? (["Black", blackHand.at(0)] as const)
+    : (["White", whiteHand.at(0)] as const);
 };
 
 const determineWinningPair = (blackHand: Card[], whiteHand: Card[]) => {
