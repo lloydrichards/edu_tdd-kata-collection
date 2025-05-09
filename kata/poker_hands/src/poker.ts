@@ -1,4 +1,4 @@
-const getSuit = (card: string) => {
+const getSuitFor = (card: string) => {
   switch (true) {
     case card.includes("C"):
       return "CLUB";
@@ -13,7 +13,7 @@ const getSuit = (card: string) => {
   }
 };
 
-const getValue = (card: string) => {
+const getValueFor = (card: string) => {
   const validValues: Array<any> = ["2", "3", "4", "5", "6", "7", "8", "9", "T"];
   const value = card[0];
   const valueIdx = validValues.findIndex((v) => v === value);
@@ -25,8 +25,8 @@ const getValue = (card: string) => {
 
 export const card = (card: string) => {
   return {
-    suit: getSuit(card),
-    value: getValue(card),
+    suit: getSuitFor(card),
+    value: getValueFor(card),
   };
 };
 
