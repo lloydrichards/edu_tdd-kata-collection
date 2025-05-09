@@ -69,14 +69,17 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
   const blackPairs = blackHand.filter(
     (c, i) => blackHand.filter((d) => d.rank == c.rank).length == 2
   );
-  const whitePairs = blackHand.filter(
-    (c, i) => blackHand.filter((d) => d.rank == c.rank).length == 2
+  const whitePairs = whiteHand.filter(
+    (c, i) => whiteHand.filter((d) => d.rank == c.rank).length == 2
   );
 
-  const pair = blackPairs.at(0) || whitePairs.at(0);
-  if (pair) {
-    const pairWinner = blackPairs.at(0) ? "Black" : "White";
-    return `${pairWinner} wins - pair: ${pair.label}`;
+  const pair = [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[];
+  if (pair.length) {
+    const pairWinner =
+      (blackPairs.at(0)?.rank || 0) > (whitePairs.at(0)?.rank || 0)
+        ? "Black"
+        : "White";
+    return `${pairWinner} wins - pair: ${pair.sort((a, b) => a.rank - b.rank).at(-1)?.label}`;
   }
 
   const blackHighestCard = blackHand.at(0);
