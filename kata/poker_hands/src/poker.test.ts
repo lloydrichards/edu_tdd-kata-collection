@@ -108,21 +108,13 @@ describe("pokerGame", () => {
   });
 
   describe("pairs", () => {
-    it("should return pair", () => {
+    it("should return winner, pair and value", () => {
       expect(
         pokerGame(
           ["2H", "3D", "9S", "9C", "JD"],
           ["2C", "3H", "4S", "8C", "JH"]
         )
-      ).toContain("pair:");
-    });
-    it("should return pair and value", () => {
-      expect(
-        pokerGame(
-          ["2H", "3D", "9S", "9C", "JD"],
-          ["2C", "3H", "4S", "8C", "JH"]
-        )
-      ).toContain("pair: Nine");
+      ).toBe("Black wins - pair: Nine");
     });
   });
 });
