@@ -1,10 +1,10 @@
 import { describe, expect, it } from "bun:test";
-import { pokerGame } from "./poker";
+import { card, pokerGame } from "./poker";
 
 // - [x] should accept two hand of cards
 //        Input: Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH
 //        Output: White wins - high card: Ace
-// - [ ] should return winner with high card
+// - [x] should return winner with high card
 // - [ ] should accept heart cards
 // - [ ] should accept diamond cards
 // - [ ] should accept spade cards
@@ -22,5 +22,10 @@ describe("pokerGame", () => {
     expect(
       pokerGame(["2H", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "AH"])
     ).toBe("White wins - high card: Ace");
+  });
+});
+describe("card", () => {
+  it("should accept heart cards", () => {
+    expect(card("2H")).toBe({ suit: "HEART" });
   });
 });
