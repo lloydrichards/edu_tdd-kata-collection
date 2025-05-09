@@ -5,10 +5,10 @@ import { card, pokerGame } from "./poker";
 //        Input: Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH
 //        Output: White wins - high card: Ace
 // - [x] should return winner with high card
-// - [ ] should accept heart cards
-// - [ ] should accept diamond cards
-// - [ ] should accept spade cards
-// - [ ] should accept club cards
+// - [x] should accept heart cards
+// - [x] should accept diamond cards
+// - [x] should accept spade cards
+// - [x] should accept club cards
 // - [ ] should accept 1-10 cards
 // - [ ] should accept face cards
 // - [ ] should not accept none face cards
@@ -25,22 +25,34 @@ describe("pokerGame", () => {
   });
 });
 describe("card", () => {
-  it("should accept heart cards", () => {
-    expect(card("2H")).toEqual({ suit: "HEART" });
+  describe("suits", () => {
+    it("should accept heart cards", () => {
+      expect(card("2H")).toEqual({ suit: "HEART", value: 2 });
+    });
+    it("should accept diamond cards", () => {
+      expect(card("2D")).toEqual({ suit: "DIAMOND", value: 2 });
+    });
+    it("should accept spade cards", () => {
+      expect(card("2S")).toEqual({ suit: "SPADE", value: 2 });
+    });
+    it("should accept club cards", () => {
+      expect(card("2C")).toEqual({ suit: "CLUB", value: 2 });
+    });
+    it("should not accept invalid suits", () => {
+      expect(() => card("2X")).toThrow();
+      expect(() => card("2M")).toThrow();
+      expect(() => card("2P")).toThrow();
+      expect(() => card("2L")).toThrow();
+    });
   });
-  it("should accept diamond cards", () => {
-    expect(card("2D")).toEqual({ suit: "DIAMOND" });
-  });
-  it("should accept spade cards", () => {
-    expect(card("2S")).toEqual({ suit: "SPADE" });
-  });
-  it("should accept club cards", () => {
-    expect(card("2C")).toEqual({ suit: "CLUB" });
-  });
-  it("should not accept invalid suits", () => {
-    expect(() => card("2X")).toThrow();
-    expect(() => card("2M")).toThrow();
-    expect(() => card("2P")).toThrow();
-    expect(() => card("2L")).toThrow();
+  describe("value", () => {
+    [2, 3, 4, 5, 6, 7, 8, 9].forEach((value) =>
+      it(`should accept ${value} card`, () => {
+        expect(card(`${value}H`)).toEqual({
+          suit: "HEART",
+          value,
+        });
+      })
+    );
   });
 });
