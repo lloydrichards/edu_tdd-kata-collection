@@ -60,10 +60,22 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     "King",
     "Ace",
   ];
-  const blackHand = black.map(card).sort((a, b) => b.rank - a.rank);
-  const blackHighestCard = blackHand.at(0);
 
+  const blackHand = black.map(card).sort((a, b) => b.rank - a.rank);
   const whiteHand = white.map(card).sort((a, b) => b.rank - a.rank);
+
+  const blackPairs = blackHand.filter(
+    (c, i) => blackHand.filter((d) => d.rank == c.rank).length == 2
+  );
+  const whitePairs = blackHand.filter(
+    (c, i) => blackHand.filter((d) => d.rank == c.rank).length == 2
+  );
+
+  if (blackPairs.length > 0 || whitePairs.length > 0) {
+    return "pair:";
+  }
+
+  const blackHighestCard = blackHand.at(0);
   const whiteHighestCard = whiteHand.at(0);
 
   if (!blackHighestCard || !whiteHighestCard) throw new Error("no high cards");
