@@ -66,20 +66,10 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
   const blackHand = black.map(card).sort((a, b) => b.rank - a.rank);
   const whiteHand = white.map(card).sort((a, b) => b.rank - a.rank);
 
-  const blackPairs = blackHand.filter(
-    (c, i) => blackHand.filter((d) => d.rank == c.rank).length == 2
-  );
-  const whitePairs = whiteHand.filter(
-    (c, i) => whiteHand.filter((d) => d.rank == c.rank).length == 2
-  );
+  const [pairWinner, pair] = determineWinningPair(blackHand, whiteHand);
 
-  const pair = [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[];
   if (pair.length) {
-    const pairWinner =
-      (blackPairs.at(0)?.rank || 0) > (whitePairs.at(0)?.rank || 0)
-        ? "Black"
-        : "White";
-    return `${pairWinner} wins - pair: ${pair.sort((a, b) => a.rank - b.rank).at(-1)?.label}`;
+    return `${pairWinner} wins - pair: ${pair.at(-1)?.label}`;
   }
 
   const blackHighestCard = blackHand.at(0);
@@ -108,3 +98,21 @@ const determineWinner = (blackHand: Card[], whiteHand: Card[]): string => {
 
   return winnerCard.blackRank > winnerCard.whiteRank ? "Black" : "White";
 };
+
+function determineWinningPair(blackHand: Card[], whiteHand: Card[]) {
+  const blackPairs = blackHand.filter(
+    (c) => blackHand.filter((d) => d.rank == c.rank).length == 2
+  );
+  const whitePairs = whiteHand.filter(
+    (c) => whiteHand.filter((d) => d.rank == c.rank).length == 2
+  );
+  const pairWinner =
+    (blackPairs.at(0)?.rank || 0) > (whitePairs.at(0)?.rank || 0)
+      ? "Black"
+      : "White";
+
+  const pair = (
+    [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[]
+  ).sort((a, b) => a.rank - b.rank);
+  return [pairWinner, pair] as const;
+}
