@@ -75,7 +75,8 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
 
   const pair = blackPairs.at(0) || whitePairs.at(0);
   if (pair) {
-    return `pair: ${pair.label}`;
+    const pairWinner = blackPairs.at(0) ? "Black" : "White";
+    return `${pairWinner} wins - pair: ${pair.label}`;
   }
 
   const blackHighestCard = blackHand.at(0);
