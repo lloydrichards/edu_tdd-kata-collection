@@ -14,6 +14,10 @@ const getSuitFor = (card: string) => {
 };
 
 const getValueFor = (card: string) => {
+  const validFace: Array<any> = ["J", "Q", "K", "A"];
+  if (validFace.includes(card[0])) {
+    return 10;
+  }
   const validValues: Array<any> = ["2", "3", "4", "5", "6", "7", "8", "9", "T"];
   const value = card[0];
   const valueIdx = validValues.findIndex((v) => v === value);
