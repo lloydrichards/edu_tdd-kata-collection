@@ -200,4 +200,24 @@ describe("classifyHand", () => {
       "PAIR"
     );
   });
+  it("should classify as TWO_PAIR", () => {
+    expect(classifyHand(["3H", "3D", "9S", "9C", "JD"].map(parseCard))).toEqual(
+      "TWO_PAIR"
+    );
+  });
+  it("should classify as THREE_OF_KIND", () => {
+    expect(classifyHand(["3H", "3D", "3S", "9C", "JD"].map(parseCard))).toEqual(
+      "THREE_OF_KIND"
+    );
+  });
+  it("should classify as FULL_HOUSE", () => {
+    expect(classifyHand(["3H", "3D", "3S", "9C", "9D"].map(parseCard))).toEqual(
+      "FULL_HOUSE"
+    );
+  });
+  it("should classify as FOUR_OF_KIND", () => {
+    expect(classifyHand(["3H", "3D", "3S", "3C", "JD"].map(parseCard))).toEqual(
+      "FOUR_OF_KIND"
+    );
+  });
 });
