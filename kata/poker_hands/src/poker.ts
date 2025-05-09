@@ -1,6 +1,7 @@
 type Card = {
   suit: string;
   value: number;
+  label: string;
   rank: number;
 };
 
@@ -35,16 +36,7 @@ const getValueFor = (card: string) => {
   return [valueIdx + 2, valueIdx] as const;
 };
 
-export const card = (card: string) => {
-  const [value, rank] = getValueFor(card);
-  return {
-    suit: getSuitFor(card),
-    value,
-    rank,
-  };
-};
-
-export const pokerGame = (black: Array<string>, white: Array<string>) => {
+export const card = (card: string): Card => {
   const labels = [
     "Two",
     "Three",
@@ -60,7 +52,17 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     "King",
     "Ace",
   ];
+  const [value, rank] = getValueFor(card);
+  const label = labels[rank] || "";
+  return {
+    suit: getSuitFor(card),
+    value,
+    label,
+    rank,
+  };
+};
 
+export const pokerGame = (black: Array<string>, white: Array<string>) => {
   const blackHand = black.map(card).sort((a, b) => b.rank - a.rank);
   const whiteHand = white.map(card).sort((a, b) => b.rank - a.rank);
 
@@ -86,7 +88,7 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
 
   let newWinner = determineWinner(blackHand, whiteHand);
 
-  return `${newWinner} wins - high card: ${labels[highestCard.rank]}`;
+  return `${newWinner} wins - high card: ${highestCard.label}`;
 };
 
 const determineWinner = (blackHand: Card[], whiteHand: Card[]): string => {
