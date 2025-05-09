@@ -70,7 +70,7 @@ describe("card", () => {
         expect(card(`${value}H`)).toEqual({
           suit: "HEART",
           value: 10,
-          rank: 8 + idx -2,
+          rank: 8 + idx,
         });
       })
     );
