@@ -127,40 +127,34 @@ const determineWinningPair = (blackHand: Card[], whiteHand: Card[]) => {
 };
 
 const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
-  if (getPairs(blackHand).length != 4 && getPairs(whiteHand).length != 4)
-    return null;
+  const blackPairs = getPairs(blackHand);
+  const whitePairs = getPairs(whiteHand);
+
+  const pair = (
+    [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[]
+  ).sort((a, b) => a.rank - b.rank);
+
+  if (blackPairs.length != 4 && whitePairs.length != 4) return null;
 
   const pairWinner =
-    (getPairs(blackHand).at(0)?.rank || -1) ==
-    (getPairs(whiteHand).at(0)?.rank || -1)
-      ? (getPairs(blackHand).at(-1)?.rank || -1) >
-        (getPairs(whiteHand).at(-1)?.rank || -1)
+    (blackPairs.at(0)?.rank || -1) == (whitePairs.at(0)?.rank || -1)
+      ? (blackPairs.at(-1)?.rank || -1) > (whitePairs.at(-1)?.rank || -1)
         ? "Black"
         : "White"
-      : (getPairs(blackHand).at(0)?.rank || -1) >
-          (getPairs(whiteHand).at(0)?.rank || -1)
+      : (blackPairs.at(0)?.rank || -1) > (whitePairs.at(0)?.rank || -1)
         ? "Black"
         : "White";
 
-  const pair = (
-    [getPairs(blackHand).at(0), getPairs(whiteHand).at(0)].filter(
-      Boolean
-    ) as Card[]
-  ).sort((a, b) => a.rank - b.rank);
-  const winningPair = pair.at(-1);
-
-  if (!winningPair) return null;
-
   if (
-    getPairs(blackHand).at(0)?.rank == getPairs(whiteHand).at(0)?.rank &&
-    getPairs(blackHand).at(-1)?.rank == getPairs(whiteHand).at(-1)?.rank
+    blackPairs.at(0)?.rank == whitePairs.at(0)?.rank &&
+    blackPairs.at(-1)?.rank == whitePairs.at(-1)?.rank
   ) {
     const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
     if (!winningHighCard) return null;
-    return [winningHighCard[0], winningPair] as const;
+    return [winningHighCard[0], pair.at(-1)] as const;
   }
 
-  return [pairWinner, winningPair] as const;
+  return [pairWinner, pair.at(-1)] as const;
 };
 
 const getPairs = (blackHand: Card[]) =>
