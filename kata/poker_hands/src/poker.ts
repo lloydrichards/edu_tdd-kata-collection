@@ -66,13 +66,23 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
       ? blackHighestCard
       : whiteHighestCard;
 
-  let newWinner = "";
-  for (let i = 0; i < 5; i++) {
-    if (blackHand[i]?.rank == whiteHand[i]?.rank) continue;
-    newWinner =
-      (blackHand[i]?.rank || 0) > (whiteHand[i]?.rank || 0) ? "Black" : "White";
-    break;
-  }
+  let newWinner = determineWinner(blackHand, whiteHand);
 
   return `${newWinner} wins - high card: ${labels[highestCard.rank]}`;
+};
+
+const determineWinner = (
+  blackHand: { suit: string; value: number; rank: number }[],
+  whiteHand: { suit: string; value: number; rank: number }[]
+): string => {
+  const winnerCard = blackHand
+    .map((blackCard, i) => ({
+      blackRank: blackCard.rank,
+      whiteRank: whiteHand[i]?.rank ?? 0,
+    }))
+    .find(({ blackRank, whiteRank }) => blackRank !== whiteRank);
+
+  if (!winnerCard) throw new Error("no winner card");
+
+  return winnerCard.blackRank > winnerCard.whiteRank ? "Black" : "White";
 };
