@@ -215,6 +215,11 @@ describe("classifyHand", () => {
       "FLUSH"
     );
   });
+  it("should classify as STRAIGHT", () => {
+    expect(classifyHand(["3H", "4H", "5S", "6H", "7D"].map(parseCard))).toEqual(
+      "STRAIGHT"
+    );
+  });
   it("should classify as FULL_HOUSE", () => {
     expect(classifyHand(["3H", "3D", "3S", "9C", "9D"].map(parseCard))).toEqual(
       "FULL_HOUSE"
@@ -223,6 +228,11 @@ describe("classifyHand", () => {
   it("should classify as FOUR_OF_KIND", () => {
     expect(classifyHand(["3H", "3D", "3S", "3C", "JD"].map(parseCard))).toEqual(
       "FOUR_OF_KIND"
+    );
+  });
+  it("should classify as STRAIGHT_FLUSH", () => {
+    expect(classifyHand(["3H", "4H", "5H", "6H", "7H"].map(parseCard))).toEqual(
+      "STRAIGHT_FLUSH"
     );
   });
 });
