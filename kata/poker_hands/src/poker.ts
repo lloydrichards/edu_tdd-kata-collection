@@ -19,14 +19,14 @@ const getValueFor = (card: string) => {
 
   if (validFace.includes(card[0])) {
     const idx = validFace.findIndex((v) => v === card[0]);
-    return [10, idx + validValues.length - 1];
+    return [10, idx + validValues.length - 1] as const;
   }
 
   const valueIdx = validValues.findIndex((v) => v === card[0]);
 
   if (valueIdx === -1) throw new Error("value is not accepted");
 
-  return [valueIdx + 2, valueIdx];
+  return [valueIdx + 2, valueIdx] as const;
 };
 
 export const card = (card: string) => {
