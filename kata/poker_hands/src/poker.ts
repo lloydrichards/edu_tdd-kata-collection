@@ -19,7 +19,7 @@ const getValueFor = (card: string) => {
 
   if (validFace.includes(card[0])) {
     const idx = validFace.findIndex((v) => v === card[0]);
-    return [10, idx + validValues.length - 1] as const;
+    return [10, idx + validValues.length] as const;
   }
 
   const valueIdx = validValues.findIndex((v) => v === card[0]);
@@ -39,7 +39,32 @@ export const card = (card: string) => {
 };
 
 export const pokerGame = (black: Array<string>, white: Array<string>) => {
-  const blackHand = black.map(card);
-  const whiteHand = white.map(card);
-  return "White wins - high card: Ace";
+  const labels = [
+    "Two",
+    "Three",
+    "Four",
+    "Five",
+    "Six",
+    "Seven",
+    "Eight",
+    "Nine",
+    "Ten",
+    "Jack",
+    "Queen",
+    "King",
+    "Ace",
+  ];
+  const blackHand = black.map(card).sort((a, b) => b.rank - a.rank);
+  const blackHighestCard = blackHand.at(0);
+
+  const whiteHand = white.map(card).sort((a, b) => b.rank - a.rank);
+  const whiteHighestCard = whiteHand.at(0);
+
+  if (!blackHighestCard || !whiteHighestCard) throw new Error("no high hards");
+  const highestCard =
+    blackHighestCard.rank > whiteHighestCard.rank
+      ? blackHighestCard
+      : whiteHighestCard;
+
+  return `White wins - high card: ${labels[highestCard.rank]}`;
 };
