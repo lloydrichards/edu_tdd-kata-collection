@@ -124,5 +124,13 @@ describe("pokerGame", () => {
         )
       ).toBe("White wins - pair: Jack");
     });
+    it("should select winner based on high card if tie", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "9S", "JS", "JD"],
+          ["2C", "3H", "4S", "JC", "JH"]
+        )
+      ).toBe("Black wins - pair: Jack");
+    });
   });
 });
