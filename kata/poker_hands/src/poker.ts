@@ -1,6 +1,6 @@
 export const card = (card: string) => {
   return {
-    suit: "",
+    suit: "HEART",
   };
 };
 

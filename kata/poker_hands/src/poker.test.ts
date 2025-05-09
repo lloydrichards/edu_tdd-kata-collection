@@ -26,6 +26,6 @@ describe("pokerGame", () => {
 });
 describe("card", () => {
   it("should accept heart cards", () => {
-    expect(card("2H")).toBe({ suit: "HEART" });
+    expect(card("2H")).toEqual({ suit: "HEART" });
   });
 });
