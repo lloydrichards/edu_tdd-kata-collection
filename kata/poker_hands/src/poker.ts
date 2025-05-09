@@ -68,11 +68,19 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
 
   const twoPairs = determineWinningTwoPair(blackHand, whiteHand);
 
+  const determineWinFor = makeWinningFor(blackHand, whiteHand);
+
+  const threeOfAKind = determineWinFor(getTriples);
+
+  if (threeOfAKind) {
+    return `${threeOfAKind[0]} wins - three of a kind: ${threeOfAKind[1]?.label}`;
+  }
+
   if (twoPairs) {
     return `${twoPairs[0]} wins - two pairs: ${twoPairs[1]?.label}`;
   }
 
-  const pairs = determineWinningPair(blackHand, whiteHand);
+  const pairs = determineWinFor(getPairs);
 
   if (pairs) {
     return `${pairs[0]} wins - pair: ${pairs[1]?.label}`;
@@ -101,28 +109,25 @@ const determineHighCardWinner = (blackHand: Card[], whiteHand: Card[]) => {
     : (["White", whiteHand.at(0)!] as const);
 };
 
-const determineWinningPair = (blackHand: Card[], whiteHand: Card[]) => {
-  const pair = (
-    [getPairs(blackHand).at(0), getPairs(whiteHand).at(0)].filter(
-      Boolean
-    ) as Card[]
-  ).sort((a, b) => a.rank - b.rank);
+const makeWinningFor =
+  (blackHand: Card[], whiteHand: Card[]) => (fn: (hand: Card[]) => Card[]) => {
+    const pair = (
+      [fn(blackHand).at(0), fn(whiteHand).at(0)].filter(Boolean) as Card[]
+    ).sort((a, b) => a.rank - b.rank);
 
-  if (!pair.at(-1)) return null;
+    if (!pair.at(-1)) return null;
 
-  if (isEqual(getPairs(blackHand).at(0), getPairs(whiteHand).at(0))) {
-    const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
-    if (!winningHighCard) return null;
-    return [winningHighCard[0], pair.at(-1)] as const;
-  }
+    if (isEqual(fn(blackHand).at(0), fn(whiteHand).at(0))) {
+      const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
+      if (!winningHighCard) return null;
+      return [winningHighCard[0], pair.at(-1)] as const;
+    }
 
-  return [
-    isGreater(getPairs(blackHand).at(0), getPairs(whiteHand).at(0))
-      ? "Black"
-      : "White",
-    pair.at(-1),
-  ] as const;
-};
+    return [
+      isGreater(fn(blackHand).at(0), fn(whiteHand).at(0)) ? "Black" : "White",
+      pair.at(-1),
+    ] as const;
+  };
 
 const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
   const blackPairs = getPairs(blackHand);
@@ -157,6 +162,10 @@ const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
 const getPairs = (blackHand: Card[]) =>
   blackHand.filter(
     (c) => blackHand.filter((d) => d.rank == c.rank).length == 2
+  );
+const getTriples = (blackHand: Card[]) =>
+  blackHand.filter(
+    (c) => blackHand.filter((d) => d.rank == c.rank).length == 3
   );
 
 const isEqual = (a?: Card, b?: Card) => a?.rank == b?.rank;
