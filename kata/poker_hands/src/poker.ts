@@ -62,20 +62,16 @@ export const parseCard = (card: string): Card => {
   };
 };
 
-const hasSinglePair = (hand: Card[]) => getSameRank(2)(hand).length === 2;
-const hasTwoPairs = (hand: Card[]) => getSameRank(2)(hand).length === 4;
-const hasThreeOfKind = (hand: Card[]) => getSameRank(3)(hand).length === 3;
-const hasFourOfKind = (hand: Card[]) => getSameRank(4)(hand).length === 4;
-const hasFullHouse = (hand: Card[]) =>
-  getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3;
-
 export const classifyHand = (hand: Card[]) => {
   const hands: Array<[string, boolean]> = [
-    ["FOUR_OF_KIND", hasFourOfKind(hand)],
-    ["FULL_HOUSE", hasFullHouse(hand)],
-    ["THREE_OF_KIND", hasThreeOfKind(hand)],
-    ["TWO_PAIR", hasTwoPairs(hand)],
-    ["PAIR", hasSinglePair(hand)],
+    ["FOUR_OF_KIND", getSameRank(4)(hand).length === 4],
+    [
+      "FULL_HOUSE",
+      getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
+    ],
+    ["THREE_OF_KIND", getSameRank(3)(hand).length === 3],
+    ["TWO_PAIR", getSameRank(2)(hand).length === 4],
+    ["PAIR", getSameRank(2)(hand).length === 2],
   ];
   const result = hands.find(([_, pred]) => pred);
 
