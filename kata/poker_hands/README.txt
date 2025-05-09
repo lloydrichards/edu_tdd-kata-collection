@@ -47,5 +47,3 @@ Output: Black wins - high card: 9
 
 Input: Black: 2H 3D 5S 9C KD White: 2D 3H 5C 9S KH
 Output: Tie
-
-     
