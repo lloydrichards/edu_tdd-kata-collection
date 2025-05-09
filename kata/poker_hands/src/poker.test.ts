@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { card, pokerGame } from "./poker";
+import { parseCard, pokerGame } from "./poker";
 
 // - [x] should accept two hand of cards
 //        Input: Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH
@@ -20,46 +20,46 @@ import { card, pokerGame } from "./poker";
 describe("card", () => {
   describe("suits", () => {
     it("should accept heart cards", () => {
-      expect(card("2H")["suit"]).toEqual("HEART");
+      expect(parseCard("2H")["suit"]).toEqual("HEART");
     });
     it("should accept diamond cards", () => {
-      expect(card("2D")["suit"]).toEqual("DIAMOND");
+      expect(parseCard("2D")["suit"]).toEqual("DIAMOND");
     });
     it("should accept spade cards", () => {
-      expect(card("2S")["suit"]).toEqual("SPADE");
+      expect(parseCard("2S")["suit"]).toEqual("SPADE");
     });
     it("should accept club cards", () => {
-      expect(card("2C")["suit"]).toEqual("CLUB");
+      expect(parseCard("2C")["suit"]).toEqual("CLUB");
     });
     it("should not accept invalid suits", () => {
-      expect(() => card("2X")).toThrow();
-      expect(() => card("2M")).toThrow();
-      expect(() => card("2P")).toThrow();
-      expect(() => card("2L")).toThrow();
+      expect(() => parseCard("2X")).toThrow();
+      expect(() => parseCard("2M")).toThrow();
+      expect(() => parseCard("2P")).toThrow();
+      expect(() => parseCard("2L")).toThrow();
     });
   });
   describe("value", () => {
     [2, 3, 4, 5, 6, 7, 8, 9].forEach((value) =>
       it(`should accept ${value} card`, () => {
-        expect(card(`${value}H`)["suit"]).toEqual("HEART");
-        expect(card(`${value}H`)["value"]).toEqual(value);
-        expect(card(`${value}H`)["rank"]).toEqual(value - 2);
+        expect(parseCard(`${value}H`)["suit"]).toEqual("HEART");
+        expect(parseCard(`${value}H`)["value"]).toEqual(value);
+        expect(parseCard(`${value}H`)["rank"]).toEqual(value - 2);
       })
     );
     it("should not accept 1 cards", () => {
-      expect(() => card("1H")).toThrow();
+      expect(() => parseCard("1H")).toThrow();
     });
     it(`should accept T (10) card`, () => {
-      expect(card("TH")["suit"]).toEqual("HEART");
-      expect(card("TH")["value"]).toEqual(10);
-      expect(card("TH")["rank"]).toEqual(8);
+      expect(parseCard("TH")["suit"]).toEqual("HEART");
+      expect(parseCard("TH")["value"]).toEqual(10);
+      expect(parseCard("TH")["rank"]).toEqual(8);
     });
 
     ["J", "Q", "K", "A"].forEach((value, idx) =>
       it(`should accept ${value} face card`, () => {
-        expect(card(`${value}H`)["suit"]).toEqual("HEART");
-        expect(card(`${value}H`)["value"]).toEqual(10);
-        expect(card(`${value}H`)["rank"]).toEqual(9 + idx);
+        expect(parseCard(`${value}H`)["suit"]).toEqual("HEART");
+        expect(parseCard(`${value}H`)["value"]).toEqual(10);
+        expect(parseCard(`${value}H`)["rank"]).toEqual(9 + idx);
       })
     );
   });

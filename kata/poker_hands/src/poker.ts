@@ -36,7 +36,7 @@ const getValueFor = (card: string) => {
   return [valueIdx + 2, valueIdx] as const;
 };
 
-export const card = (card: string): Card => {
+export const parseCard = (card: string): Card => {
   const labels = [
     "Two",
     "Three",
@@ -63,8 +63,8 @@ export const card = (card: string): Card => {
 };
 
 export const pokerGame = (black: Array<string>, white: Array<string>) => {
-  const blackHand = black.map(card).sort((a, b) => b.rank - a.rank);
-  const whiteHand = white.map(card).sort((a, b) => b.rank - a.rank);
+  const blackHand = black.map(parseCard).sort((a, b) => b.rank - a.rank);
+  const whiteHand = white.map(parseCard).sort((a, b) => b.rank - a.rank);
 
   const [pairWinner, pair] = determineWinningPair(blackHand, whiteHand);
 
@@ -72,6 +72,12 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     return `${pairWinner} wins - pair: ${pair.at(-1)?.label}`;
   }
 
+  let [newWinner, card] = determineHighCardWinner(blackHand, whiteHand);
+
+  return `${newWinner} wins - high card: ${card.label}`;
+};
+
+const determineHighCardWinner = (blackHand: Card[], whiteHand: Card[]) => {
   const blackHighestCard = blackHand.at(0);
   const whiteHighestCard = whiteHand.at(0);
 
@@ -80,13 +86,6 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     blackHighestCard.rank > whiteHighestCard.rank
       ? blackHighestCard
       : whiteHighestCard;
-
-  let newWinner = determineWinner(blackHand, whiteHand);
-
-  return `${newWinner} wins - high card: ${highestCard.label}`;
-};
-
-const determineWinner = (blackHand: Card[], whiteHand: Card[]): string => {
   const winnerCard = blackHand
     .map((blackCard, i) => ({
       blackRank: blackCard.rank,
@@ -96,7 +95,9 @@ const determineWinner = (blackHand: Card[], whiteHand: Card[]): string => {
 
   if (!winnerCard) throw new Error("no winner card");
 
-  return winnerCard.blackRank > winnerCard.whiteRank ? "Black" : "White";
+  const winner =
+    winnerCard.blackRank > winnerCard.whiteRank ? "Black" : "White";
+  return [winner, highestCard] as const;
 };
 
 function determineWinningPair(blackHand: Card[], whiteHand: Card[]) {
