@@ -37,4 +37,7 @@ describe("card", () => {
   it("should accept club cards", () => {
     expect(card("2C")).toEqual({ suit: "CLUB" });
   });
+  it("should not accept invalid suits", () => {
+    expect(card("2X")).toThrow();
+  });
 });
