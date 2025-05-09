@@ -9,7 +9,7 @@ import { card, pokerGame } from "./poker";
 // - [x] should accept diamond cards
 // - [x] should accept spade cards
 // - [x] should accept club cards
-// - [ ] should accept 1-10 cards
+// - [x] should accept 1-10 cards
 // - [ ] should accept face cards
 // - [ ] should not accept none face cards
 // - [ ] should rank number cards with T highest
@@ -63,5 +63,13 @@ describe("card", () => {
         value: 10,
       });
     });
+    ["J", "Q", "K", "A"].forEach((value) =>
+      it(`should accept ${value} face card`, () => {
+        expect(card(`${value}H`)).toEqual({
+          suit: "HEART",
+          value: 10,
+        });
+      })
+    );
   });
 });
