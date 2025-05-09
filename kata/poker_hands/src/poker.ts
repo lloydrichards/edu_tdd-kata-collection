@@ -1,3 +1,9 @@
+type Card = {
+  suit: string;
+  value: number;
+  rank: number;
+};
+
 const getSuitFor = (card: string) => {
   switch (true) {
     case card.includes("C"):
@@ -71,10 +77,7 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
   return `${newWinner} wins - high card: ${labels[highestCard.rank]}`;
 };
 
-const determineWinner = (
-  blackHand: { suit: string; value: number; rank: number }[],
-  whiteHand: { suit: string; value: number; rank: number }[]
-): string => {
+const determineWinner = (blackHand: Card[], whiteHand: Card[]): string => {
   const winnerCard = blackHand
     .map((blackCard, i) => ({
       blackRank: blackCard.rank,
