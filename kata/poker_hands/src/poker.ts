@@ -69,6 +69,7 @@ export const classifyHand = (hand: Card[]) => {
       "FULL_HOUSE",
       getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
     ],
+    ["FLUSH", hand.map((d) => d.suit).every((d) => d === hand.at(0)?.suit)],
     ["THREE_OF_KIND", getSameRank(3)(hand).length === 3],
     ["TWO_PAIR", getSameRank(2)(hand).length === 4],
     ["PAIR", getSameRank(2)(hand).length === 2],
