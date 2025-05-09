@@ -65,8 +65,12 @@ export const parseCard = (card: string): Card => {
 const hasSinglePair = (hand: Card[]) => getPairs(hand).length === 2;
 
 export const classifyHand = (hand: Card[]) => {
+  const hands: Array<[string, boolean]> = [["PAIR", hasSinglePair(hand)]];
+  const result = hands.find(([_, pred]) => pred);
 
-}
+  if (!result) return null;
+  return result[0];
+};
 
 export const pokerGame = (black: Array<string>, white: Array<string>) => {
   const blackHand = black.map(parseCard).sort((a, b) => b.rank - a.rank);

@@ -197,7 +197,7 @@ describe("classifyHand", () => {
   // - Hands which both contain three of a kind are ranked by the value of the 3 cards.
   it("should classify as PAIR", () => {
     expect(classifyHand(["3H", "3D", "9S", "TC", "JD"].map(parseCard))).toEqual(
-      { hand: "PAIR" }
+      "PAIR"
     );
   });
 });
