@@ -28,4 +28,7 @@ describe("card", () => {
   it("should accept heart cards", () => {
     expect(card("2H")).toEqual({ suit: "HEART" });
   });
+  it("should accept diamond cards", () => {
+    expect(card("2D")).toEqual({ suit: "DIAMOND" });
+  });
 });
