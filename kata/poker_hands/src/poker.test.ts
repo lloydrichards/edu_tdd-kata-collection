@@ -54,5 +54,8 @@ describe("card", () => {
         });
       })
     );
+    it("should not accept 1 cards", () => {
+      expect(() => card("1H")).toThrow();
+    });
   });
 });
