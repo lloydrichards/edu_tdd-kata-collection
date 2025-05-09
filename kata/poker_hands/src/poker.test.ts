@@ -17,6 +17,54 @@ import { card, pokerGame } from "./poker";
 // - [ ] should return winner with pair
 // - [ ] should return winner with two pair
 
+describe("card", () => {
+  describe("suits", () => {
+    it("should accept heart cards", () => {
+      expect(card("2H")["suit"]).toEqual("HEART");
+    });
+    it("should accept diamond cards", () => {
+      expect(card("2D")["suit"]).toEqual("DIAMOND");
+    });
+    it("should accept spade cards", () => {
+      expect(card("2S")["suit"]).toEqual("SPADE");
+    });
+    it("should accept club cards", () => {
+      expect(card("2C")["suit"]).toEqual("CLUB");
+    });
+    it("should not accept invalid suits", () => {
+      expect(() => card("2X")).toThrow();
+      expect(() => card("2M")).toThrow();
+      expect(() => card("2P")).toThrow();
+      expect(() => card("2L")).toThrow();
+    });
+  });
+  describe("value", () => {
+    [2, 3, 4, 5, 6, 7, 8, 9].forEach((value) =>
+      it(`should accept ${value} card`, () => {
+        expect(card(`${value}H`)["suit"]).toEqual("HEART");
+        expect(card(`${value}H`)["value"]).toEqual(value);
+        expect(card(`${value}H`)["rank"]).toEqual(value - 2);
+      })
+    );
+    it("should not accept 1 cards", () => {
+      expect(() => card("1H")).toThrow();
+    });
+    it(`should accept T (10) card`, () => {
+      expect(card("TH")["suit"]).toEqual("HEART");
+      expect(card("TH")["value"]).toEqual(10);
+      expect(card("TH")["rank"]).toEqual(8);
+    });
+
+    ["J", "Q", "K", "A"].forEach((value, idx) =>
+      it(`should accept ${value} face card`, () => {
+        expect(card(`${value}H`)["suit"]).toEqual("HEART");
+        expect(card(`${value}H`)["value"]).toEqual(10);
+        expect(card(`${value}H`)["rank"]).toEqual(9 + idx);
+      })
+    );
+  });
+});
+
 describe("pokerGame", () => {
   describe("high card", () => {
     it("should accept two hand of cards", () => {
@@ -68,53 +116,13 @@ describe("pokerGame", () => {
         )
       ).toContain("pair:");
     });
-  });
-});
-
-describe("card", () => {
-  describe("suits", () => {
-    it("should accept heart cards", () => {
-      expect(card("2H")["suit"]).toEqual("HEART");
+    it("should return pair and value", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "9S", "9C", "JD"],
+          ["2C", "3H", "4S", "8C", "JH"]
+        )
+      ).toContain("pair: Nine");
     });
-    it("should accept diamond cards", () => {
-      expect(card("2D")["suit"]).toEqual("DIAMOND");
-    });
-    it("should accept spade cards", () => {
-      expect(card("2S")["suit"]).toEqual("SPADE");
-    });
-    it("should accept club cards", () => {
-      expect(card("2C")["suit"]).toEqual("CLUB");
-    });
-    it("should not accept invalid suits", () => {
-      expect(() => card("2X")).toThrow();
-      expect(() => card("2M")).toThrow();
-      expect(() => card("2P")).toThrow();
-      expect(() => card("2L")).toThrow();
-    });
-  });
-  describe("value", () => {
-    [2, 3, 4, 5, 6, 7, 8, 9].forEach((value) =>
-      it(`should accept ${value} card`, () => {
-        expect(card(`${value}H`)["suit"]).toEqual("HEART");
-        expect(card(`${value}H`)["value"]).toEqual(value);
-        expect(card(`${value}H`)["rank"]).toEqual(value - 2);
-      })
-    );
-    it("should not accept 1 cards", () => {
-      expect(() => card("1H")).toThrow();
-    });
-    it(`should accept T (10) card`, () => {
-      expect(card("TH")["suit"]).toEqual("HEART");
-      expect(card("TH")["value"]).toEqual(10);
-      expect(card("TH")["rank"]).toEqual(8);
-    });
-
-    ["J", "Q", "K", "A"].forEach((value, idx) =>
-      it(`should accept ${value} face card`, () => {
-        expect(card(`${value}H`)["suit"]).toEqual("HEART");
-        expect(card(`${value}H`)["value"]).toEqual(10);
-        expect(card(`${value}H`)["rank"]).toEqual(9 + idx);
-      })
-    );
   });
 });
