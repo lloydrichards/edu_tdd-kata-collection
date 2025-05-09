@@ -16,6 +16,7 @@ const getSuit = (card: string) => {
 export const card = (card: string) => {
   return {
     suit: getSuit(card),
+    value: Number(card[0]),
   };
 };
 
