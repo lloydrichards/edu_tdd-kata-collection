@@ -60,14 +60,19 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
   const whiteHand = white.map(card).sort((a, b) => b.rank - a.rank);
   const whiteHighestCard = whiteHand.at(0);
 
-  if (!blackHighestCard || !whiteHighestCard) throw new Error("no high hards");
+  if (!blackHighestCard || !whiteHighestCard) throw new Error("no high cards");
   const highestCard =
     blackHighestCard.rank > whiteHighestCard.rank
       ? blackHighestCard
       : whiteHighestCard;
 
-  const winner =
-    blackHighestCard.rank > whiteHighestCard.rank ? "Black" : "White";
+  let newWinner = "";
+  for (let i = 0; i < 5; i++) {
+    if (blackHand[i]?.rank == whiteHand[i]?.rank) continue;
+    newWinner =
+      (blackHand[i]?.rank || 0) > (whiteHand[i]?.rank || 0) ? "Black" : "White";
+    break;
+  }
 
-  return `${winner} wins - high card: ${labels[highestCard.rank]}`;
+  return `${newWinner} wins - high card: ${labels[highestCard.rank]}`;
 };
