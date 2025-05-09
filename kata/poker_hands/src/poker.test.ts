@@ -57,5 +57,11 @@ describe("card", () => {
     it("should not accept 1 cards", () => {
       expect(() => card("1H")).toThrow();
     });
+    it(`should accept T (10) card`, () => {
+      expect(card("TH")).toEqual({
+        suit: "HEART",
+        value: 10,
+      });
+    });
   });
 });
