@@ -14,9 +14,12 @@ const getSuit = (card: string) => {
 };
 
 export const card = (card: string) => {
+  const validValues: Array<any> = ["2", "3", "4", "5", "6", "7", "8", "9"];
+  const value = card[0];
+  if (!validValues.includes(value)) throw new Error("value is not accepted");
   return {
     suit: getSuit(card),
-    value: Number(card[0]),
+    value: Number(value),
   };
 };
 
