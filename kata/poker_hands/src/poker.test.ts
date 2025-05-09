@@ -18,28 +18,56 @@ import { card, pokerGame } from "./poker";
 // - [ ] should return winner with two pair
 
 describe("pokerGame", () => {
-  it("should accept two hand of cards", () => {
-    expect(
-      pokerGame(["2H", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "AH"])
-    ).toBe("White wins - high card: Ace");
+  describe("high card", () => {
+    it("should accept two hand of cards", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "5S", "9C", "KD"],
+          ["2C", "3H", "4S", "8C", "AH"]
+        )
+      ).toBe("White wins - high card: Ace");
+    });
+    it("should not accept invalid cards", () => {
+      expect(() =>
+        pokerGame(
+          ["2X", "3D", "5S", "9C", "KD"],
+          ["2C", "3H", "4S", "8C", "AH"]
+        )
+      ).toThrow();
+    });
+    it("should return high card", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "5S", "9C", "JD"],
+          ["2C", "3H", "4S", "8C", "QH"]
+        )
+      ).toBe("White wins - high card: Queen");
+      expect(
+        pokerGame(
+          ["2H", "3D", "5S", "9C", "JD"],
+          ["2C", "3H", "4S", "8C", "TH"]
+        )
+      ).toBe("Black wins - high card: Jack");
+    });
+    it("should return winner with next high card on tie", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "5S", "9C", "JD"],
+          ["2C", "3H", "4S", "8C", "JH"]
+        )
+      ).toBe("Black wins - high card: Jack");
+    });
   });
-  it("should not accept invalid cards", () => {
-    expect(() =>
-      pokerGame(["2X", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "AH"])
-    ).toThrow();
-  });
-  it("should return high card", () => {
-    expect(
-      pokerGame(["2H", "3D", "5S", "9C", "JD"], ["2C", "3H", "4S", "8C", "QH"])
-    ).toBe("White wins - high card: Queen");
-    expect(
-      pokerGame(["2H", "3D", "5S", "9C", "JD"], ["2C", "3H", "4S", "8C", "TH"])
-    ).toBe("Black wins - high card: Jack");
-  });
-  it("should return winner with next high card on tie", () => {
-    expect(
-      pokerGame(["2H", "3D", "5S", "9C", "JD"], ["2C", "3H", "4S", "8C", "JH"])
-    ).toBe("Black wins - high card: Jack");
+
+  describe("pairs", () => {
+    it("should return pair", () => {
+      expect(
+        pokerGame(
+          ["2H", "3D", "9S", "9C", "JD"],
+          ["2C", "3H", "4S", "8C", "JH"]
+        )
+      ).toContain("pair:");
+    });
   });
 });
 
