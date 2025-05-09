@@ -1,5 +1,5 @@
 import { describe, expect, it } from "bun:test";
-import { parseCard, pokerGame } from "./poker";
+import { classifyHand, parseCard, pokerGame } from "./poker";
 
 // - [x] should accept two hand of cards
 //        Input: Black: 2H 3D 5S 9C KD White: 2C 3H 4S 8C AH
@@ -189,5 +189,15 @@ describe("Three of a Kind", () => {
     expect(
       pokerGame(["3H", "3D", "9S", "9C", "JD"], ["2C", "2H", "2S", "8C", "JH"])
     ).toEqual("White wins - three of a kind: Two");
+  });
+});
+
+describe("classifyHand", () => {
+  // - Three of the cards in the hand have the same value.
+  // - Hands which both contain three of a kind are ranked by the value of the 3 cards.
+  it("should classify as PAIR", () => {
+    expect(classifyHand(["3H", "3D", "9S", "TC", "JD"].map(parseCard))).toEqual(
+      { hand: "PAIR" }
+    );
   });
 });
