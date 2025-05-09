@@ -153,7 +153,23 @@ describe("pokerGame", () => {
           ["3H", "3D", "9S", "9C", "JD"],
           ["2C", "3H", "4S", "8C", "JH"]
         )
-      ).toContain("two pairs: Nine");
+      ).toEqual("Black wins - two pairs: Nine");
+    });
+    it("should return the higher of the two pairs", () => {
+      expect(
+        pokerGame(
+          ["3H", "3D", "9S", "9C", "JD"],
+          ["2C", "4H", "4S", "JC", "JH"]
+        )
+      ).toEqual("White wins - two pairs: Jack");
+    });
+    it("should return the second pair on first tie", () => {
+      expect(
+        pokerGame(
+          ["3H", "3D", "9S", "JS", "JD"],
+          ["2C", "4H", "4S", "JC", "JH"]
+        )
+      ).toEqual("White wins - two pairs: Jack");
     });
   });
 });
