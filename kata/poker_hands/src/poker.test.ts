@@ -10,10 +10,10 @@ import { card, pokerGame } from "./poker";
 // - [x] should accept spade cards
 // - [x] should accept club cards
 // - [x] should accept 1-10 cards
-// - [ ] should accept face cards
-// - [ ] should not accept none face cards
-// - [ ] should rank number cards with T highest
-// - [ ] should rank face cards above numbers
+// - [x] should accept face cards
+// - [x] should not accept none face cards
+// - [x] should rank number cards with T highest
+// - [x] should rank face cards above numbers
 // - [ ] should return winner with pair
 // - [ ] should return winner with two pair
 
@@ -23,7 +23,13 @@ describe("pokerGame", () => {
       pokerGame(["2H", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "AH"])
     ).toBe("White wins - high card: Ace");
   });
+  it("should not accept invalid cards", () => {
+    expect(() =>
+      pokerGame(["2X", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "AH"])
+    ).toThrow();
+  });
 });
+
 describe("card", () => {
   describe("suits", () => {
     it("should accept heart cards", () => {
