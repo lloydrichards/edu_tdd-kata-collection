@@ -1,18 +1,19 @@
+const getSuit = (card: string) => {
+  switch (true) {
+    case card.includes("C"):
+      return "CLUB";
+    case card.includes("S"):
+      return "SPADE";
+    case card.includes("D"):
+      return "DIAMOND";
+    default:
+      return "HEART";
+  }
+};
+
 export const card = (card: string) => {
-  if (card.includes("C"))
-    return {
-      suit: "CLUB",
-    };
-  if (card.includes("S"))
-    return {
-      suit: "SPADE",
-    };
-  if (card.includes("D"))
-    return {
-      suit: "DIAMOND",
-    };
   return {
-    suit: "HEART",
+    suit: getSuit(card),
   };
 };
 
