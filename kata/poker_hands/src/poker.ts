@@ -1,4 +1,8 @@
 export const card = (card: string) => {
+  if (card.includes("C"))
+    return {
+      suit: "CLUB",
+    };
   if (card.includes("S"))
     return {
       suit: "SPADE",
