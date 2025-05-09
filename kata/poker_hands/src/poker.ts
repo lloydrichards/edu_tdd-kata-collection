@@ -113,5 +113,10 @@ const determineWinningPair = (blackHand: Card[], whiteHand: Card[]) => {
 
   if (!pair.length) return null;
 
+  if (blackPairs.at(0)?.rank == whitePairs.at(0)?.rank) {
+    const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
+    if (!winningHighCard) return null;
+    return [winningHighCard[0], pair.at(-1)] as const;
+  }
   return [pairWinner, pair.at(-1)] as const;
 };
