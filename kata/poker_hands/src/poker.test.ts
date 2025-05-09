@@ -27,16 +27,16 @@ describe("pokerGame", () => {
 describe("card", () => {
   describe("suits", () => {
     it("should accept heart cards", () => {
-      expect(card("2H")).toEqual({ suit: "HEART", value: 2 });
+      expect(card("2H")).toEqual({ suit: "HEART", value: 2, rank: 0 });
     });
     it("should accept diamond cards", () => {
-      expect(card("2D")).toEqual({ suit: "DIAMOND", value: 2 });
+      expect(card("2D")).toEqual({ suit: "DIAMOND", value: 2, rank: 0 });
     });
     it("should accept spade cards", () => {
-      expect(card("2S")).toEqual({ suit: "SPADE", value: 2 });
+      expect(card("2S")).toEqual({ suit: "SPADE", value: 2, rank: 0 });
     });
     it("should accept club cards", () => {
-      expect(card("2C")).toEqual({ suit: "CLUB", value: 2 });
+      expect(card("2C")).toEqual({ suit: "CLUB", value: 2, rank: 0 });
     });
     it("should not accept invalid suits", () => {
       expect(() => card("2X")).toThrow();
@@ -51,6 +51,7 @@ describe("card", () => {
         expect(card(`${value}H`)).toEqual({
           suit: "HEART",
           value,
+          rank: value - 2,
         });
       })
     );
@@ -61,13 +62,15 @@ describe("card", () => {
       expect(card("TH")).toEqual({
         suit: "HEART",
         value: 10,
+        rank: 8,
       });
     });
-    ["J", "Q", "K", "A"].forEach((value) =>
+    ["J", "Q", "K", "A"].forEach((value, idx) =>
       it(`should accept ${value} face card`, () => {
         expect(card(`${value}H`)).toEqual({
           suit: "HEART",
           value: 10,
+          rank: 8 + idx,
         });
       })
     );
