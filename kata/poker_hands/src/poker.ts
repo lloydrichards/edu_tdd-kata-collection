@@ -70,64 +70,98 @@ const hasStraight = (hand: Card[]) =>
   );
 
 export const classifyHand = (hand: Card[]) => {
-  const hands: Array<[keyof typeof ranks, boolean]> = [
-    ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand)],
-    ["FOUR_OF_KIND", getSameRank(4)(hand).length === 4],
+  const hands: Array<[keyof typeof ranks, boolean, Card | null]> = [
+    ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand), null],
+    [
+      "FOUR_OF_KIND",
+      getSameRank(4)(hand).length === 4,
+      getSameRank(4)(hand).at(-1) || null,
+    ],
     [
       "FULL_HOUSE",
       getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
+      getSameRank(3)(hand).at(-1) || null,
     ],
-    ["FLUSH", hasFlush(hand)],
-    ["STRAIGHT", hasStraight(hand)],
-    ["THREE_OF_KIND", getSameRank(3)(hand).length === 3],
-    ["TWO_PAIR", getSameRank(2)(hand).length === 4],
-    ["PAIR", getSameRank(2)(hand).length === 2],
+    ["FLUSH", hasFlush(hand), null],
+    ["STRAIGHT", hasStraight(hand), null],
+    [
+      "THREE_OF_KIND",
+      getSameRank(3)(hand).length === 3,
+      getSameRank(3)(hand).at(-1) || null,
+    ],
+    [
+      "TWO_PAIR",
+      getSameRank(2)(hand).length === 4,
+      getSameRank(2)(hand).at(-1) || null,
+    ],
+    [
+      "PAIR",
+      getSameRank(2)(hand).length === 2,
+      getSameRank(2)(hand).at(-1) || null,
+    ],
   ];
   const result = hands.find(([_, pred]) => pred);
 
-  if (!result) return null;
-  return result[0];
+  if (!result) return [null, null];
+  return [result[0], result[2]] as const;
 };
+
 const ranks = {
   STRAIGHT_FLUSH: {
     label: "straight flush",
     rank: 1,
+    hasHighCard: false,
   },
   FOUR_OF_KIND: {
     label: "four of a kind",
     rank: 2,
+    hasHighCard: true,
   },
   FULL_HOUSE: {
     label: "full house",
     rank: 3,
+    hasHighCard: false,
   },
   FLUSH: {
     label: "flush",
     rank: 4,
+    hasHighCard: false,
   },
   STRAIGHT: {
     label: "straight",
     rank: 5,
+    hasHighCard: false,
   },
   THREE_OF_KIND: {
     label: "three of a kind",
     rank: 6,
+    hasHighCard: true,
   },
   TWO_PAIR: {
     label: "two pair",
     rank: 7,
+    hasHighCard: true,
   },
   PAIR: {
     label: "pair",
     rank: 8,
+    hasHighCard: true,
   },
 };
 
 export const scoreHand = (hand: Card[]) => {
-  const type = classifyHand(hand);
+  const [type, card] = classifyHand(hand);
   if (!type) return null;
 
-  return { ...ranks[type], subRank: getSameRank(1)(hand).at(-1)?.rank };
+  console.log(card);
+  return {
+    label: ranks[type]?.label || "",
+    rank: ranks[type]?.rank || -1,
+    subRank: card?.rank,
+    highCard: ranks[type]?.hasHighCard
+      ? getSameRank(1)(hand).at(-1)
+      : undefined,
+  };
 };
 
 export const pokerGame = (black: Array<string>, white: Array<string>) => {

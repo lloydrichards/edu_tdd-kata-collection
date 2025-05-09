@@ -195,42 +195,42 @@ describe("Three of a Kind", () => {
 describe("classifyHand", () => {
   it("should classify as PAIR", () => {
     expect(classifyHand(["3H", "3D", "9S", "TC", "JD"].map(parseCard))).toEqual(
-      "PAIR"
+      ["PAIR", parseCard("3D")]
     );
   });
   it("should classify as TWO_PAIR", () => {
     expect(classifyHand(["3H", "3D", "9S", "9C", "JD"].map(parseCard))).toEqual(
-      "TWO_PAIR"
+      ["TWO_PAIR", parseCard("9C")]
     );
   });
   it("should classify as THREE_OF_KIND", () => {
     expect(classifyHand(["3H", "3D", "3S", "9C", "JD"].map(parseCard))).toEqual(
-      "THREE_OF_KIND"
+      ["THREE_OF_KIND", parseCard("3S")]
     );
   });
   it("should classify as FLUSH", () => {
     expect(classifyHand(["3H", "4H", "7H", "TH", "JH"].map(parseCard))).toEqual(
-      "FLUSH"
+      ["FLUSH", null]
     );
   });
   it("should classify as STRAIGHT", () => {
     expect(classifyHand(["3H", "4H", "5S", "6H", "7D"].map(parseCard))).toEqual(
-      "STRAIGHT"
+      ["STRAIGHT", null]
     );
   });
   it("should classify as FULL_HOUSE", () => {
     expect(classifyHand(["3H", "3D", "3S", "9C", "9D"].map(parseCard))).toEqual(
-      "FULL_HOUSE"
+      ["FULL_HOUSE", parseCard("3S")]
     );
   });
   it("should classify as FOUR_OF_KIND", () => {
     expect(classifyHand(["3H", "3D", "3S", "3C", "JD"].map(parseCard))).toEqual(
-      "FOUR_OF_KIND"
+      ["FOUR_OF_KIND", parseCard("3C")]
     );
   });
   it("should classify as STRAIGHT_FLUSH", () => {
     expect(classifyHand(["3H", "4H", "5H", "6H", "7H"].map(parseCard))).toEqual(
-      "STRAIGHT_FLUSH"
+      ["STRAIGHT_FLUSH", null]
     );
   });
 });
@@ -240,14 +240,16 @@ describe("scoreHand", () => {
     expect(scoreHand(["3H", "4H", "5H", "6H", "7H"].map(parseCard))).toEqual({
       rank: 1,
       label: "straight flush",
-      subRank: 5,
+      subRank: undefined,
+      highCard: undefined,
     });
   });
   it("should score as pair with high card", () => {
     expect(scoreHand(["3H", "3D", "5H", "6H", "7H"].map(parseCard))).toEqual({
       rank: 8,
       label: "pair",
-      subRank: 5,
+      subRank: 1,
+      highCard: parseCard("7H"),
     });
   });
 });
