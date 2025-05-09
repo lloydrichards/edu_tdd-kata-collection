@@ -38,6 +38,6 @@ describe("card", () => {
     expect(card("2C")).toEqual({ suit: "CLUB" });
   });
   it("should not accept invalid suits", () => {
-    expect(card("2X")).toThrow();
+    expect(() => card("2X")).toThrow();
   });
 });

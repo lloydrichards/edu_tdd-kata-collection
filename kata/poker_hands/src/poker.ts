@@ -6,8 +6,10 @@ const getSuit = (card: string) => {
       return "SPADE";
     case card.includes("D"):
       return "DIAMOND";
-    default:
+    case card.includes("H"):
       return "HEART";
+    default:
+      throw new Error("[getSuit] suit is not accepted");
   }
 };
 
