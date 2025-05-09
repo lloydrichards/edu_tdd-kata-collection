@@ -28,6 +28,11 @@ describe("pokerGame", () => {
       pokerGame(["2X", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "AH"])
     ).toThrow();
   });
+  it("should return high card", () => {
+    expect(
+      pokerGame(["2H", "3D", "5S", "9C", "JD"], ["2C", "3H", "4S", "8C", "QH"])
+    ).toBe("White wins - high card: Queen");
+  });
 });
 
 describe("card", () => {
