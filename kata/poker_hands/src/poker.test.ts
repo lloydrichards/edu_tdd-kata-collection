@@ -210,6 +210,11 @@ describe("classifyHand", () => {
       "THREE_OF_KIND"
     );
   });
+  it("should classify as FLUSH", () => {
+    expect(classifyHand(["3H", "4H", "7H", "TH", "JH"].map(parseCard))).toEqual(
+      "FLUSH"
+    );
+  });
   it("should classify as FULL_HOUSE", () => {
     expect(classifyHand(["3H", "3D", "3S", "9C", "9D"].map(parseCard))).toEqual(
       "FULL_HOUSE"
