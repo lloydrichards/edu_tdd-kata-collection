@@ -61,6 +61,7 @@ export const parseCard = (card: string): Card => {
     rank,
   };
 };
+
 const hasFlush = (hand: Card[]) =>
   hand.map((d) => d.suit).every((d) => d === hand.at(0)?.suit);
 const hasStraight = (hand: Card[]) =>
@@ -70,87 +71,67 @@ const hasStraight = (hand: Card[]) =>
   );
 
 export const classifyHand = (hand: Card[]) => {
-  const hands: Array<[keyof typeof ranks, boolean, Array<Card | null>]> = [
-    ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand), [null]],
+  const hands: Array<[(typeof ranks)[0]["key"], boolean, Array<Card | null>]> =
     [
-      "FOUR_OF_KIND",
-      getSameRank(4)(hand).length === 4,
-      [getSameRank(4)(hand).at(-1) || null],
-    ],
-    [
-      "FULL_HOUSE",
-      getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
-      [getSameRank(3)(hand).at(-1) || null],
-    ],
-    ["FLUSH", hasFlush(hand), [null]],
-    ["STRAIGHT", hasStraight(hand), [null]],
-    [
-      "THREE_OF_KIND",
-      getSameRank(3)(hand).length === 3,
-      [getSameRank(3)(hand).at(-1) || null],
-    ],
-    [
-      "TWO_PAIR",
-      getSameRank(2)(hand).length === 4,
-      [getSameRank(2)(hand).at(-1) || null, getSameRank(2)(hand).at(0) || null],
-    ],
-    [
-      "PAIR",
-      getSameRank(2)(hand).length === 2,
-      [getSameRank(2)(hand).at(-1) || null],
-    ],
-  ];
+      ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand), [null]],
+      [
+        "FOUR_OF_KIND",
+        getSameRank(4)(hand).length === 4,
+        [getSameRank(4)(hand).at(-1) || null],
+      ],
+      [
+        "FULL_HOUSE",
+        getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
+        [getSameRank(3)(hand).at(-1) || null],
+      ],
+      ["FLUSH", hasFlush(hand), [null]],
+      ["STRAIGHT", hasStraight(hand), [null]],
+      [
+        "THREE_OF_KIND",
+        getSameRank(3)(hand).length === 3,
+        [getSameRank(3)(hand).at(-1) || null],
+      ],
+      [
+        "TWO_PAIR",
+        getSameRank(2)(hand).length === 4,
+        [
+          getSameRank(2)(hand).at(-1) || null,
+          getSameRank(2)(hand).at(0) || null,
+        ],
+      ],
+      [
+        "PAIR",
+        getSameRank(2)(hand).length === 2,
+        [getSameRank(2)(hand).at(-1) || null],
+      ],
+    ];
   const result = hands.find(([_, pred]) => pred);
   if (!result) return [null, null];
   return [result[0], result[2]] as const;
 };
 
-const ranks = {
-  STRAIGHT_FLUSH: {
-    label: "straight flush",
-    rank: 8,
-  },
-  FOUR_OF_KIND: {
-    label: "four of a kind",
-    rank: 7,
-  },
-  FULL_HOUSE: {
-    label: "full house",
-    rank: 6,
-  },
-  FLUSH: {
-    label: "flush",
-    rank: 5,
-  },
-  STRAIGHT: {
-    label: "straight",
-    rank: 4,
-  },
-  THREE_OF_KIND: {
-    label: "three of a kind",
-    rank: 3,
-  },
-  TWO_PAIR: {
-    label: "two pairs",
-    rank: 2,
-  },
-  PAIR: {
-    label: "pair",
-    rank: 1,
-  },
-};
+const ranks = [
+  { key: "STRAIGHT_FLUSH", label: "straight flush", rank: 8 },
+  { key: "FOUR_OF_KIND", label: "four of a kind", rank: 7 },
+  { key: "FULL_HOUSE", label: "full house", rank: 6 },
+  { key: "FLUSH", label: "flush", rank: 5 },
+  { key: "STRAIGHT", label: "straight", rank: 4 },
+  { key: "THREE_OF_KIND", label: "three of a kind", rank: 3 },
+  { key: "TWO_PAIR", label: "two pairs", rank: 2 },
+  { key: "PAIR", label: "pair", rank: 1 },
+];
 
 export const scoreHand = (hand: Card[]) => {
   const [type, card] = classifyHand(hand);
-  if (!type) return null;
-
-  const handScore = ranks[type].rank * 1000;
+  const ranking = ranks.find((s) => s.key == type);
+  if (!ranking) return null;
+  const handScore = ranking.rank * 1000;
   const cardScore = (card?.[0]?.rank || 0) + (card?.[1]?.rank || 0);
   const highCardScore = (getSameRank(1)(hand).at(-1)?.rank || 0) / 100;
 
   return {
     score: handScore + cardScore + highCardScore,
-    label: ranks[type].label || "",
+    label: ranking.label || "",
     cardLabel: card?.[0]?.label,
     highCard: getSameRank(1)(hand).at(-1),
   };
