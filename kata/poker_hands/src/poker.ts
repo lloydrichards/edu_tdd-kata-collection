@@ -109,42 +109,42 @@ export const classifyHand = (hand: Card[]) => {
 const ranks = {
   STRAIGHT_FLUSH: {
     label: "straight flush",
-    rank: 1,
+    rank: 8,
     hasHighCard: false,
   },
   FOUR_OF_KIND: {
     label: "four of a kind",
-    rank: 2,
+    rank: 7,
     hasHighCard: true,
   },
   FULL_HOUSE: {
     label: "full house",
-    rank: 3,
+    rank: 6,
     hasHighCard: false,
   },
   FLUSH: {
     label: "flush",
-    rank: 4,
+    rank: 5,
     hasHighCard: false,
   },
   STRAIGHT: {
     label: "straight",
-    rank: 5,
+    rank: 4,
     hasHighCard: false,
   },
   THREE_OF_KIND: {
     label: "three of a kind",
-    rank: 6,
+    rank: 3,
     hasHighCard: true,
   },
   TWO_PAIR: {
     label: "two pair",
-    rank: 7,
+    rank: 2,
     hasHighCard: true,
   },
   PAIR: {
     label: "pair",
-    rank: 8,
+    rank: 1,
     hasHighCard: true,
   },
 };
@@ -152,15 +152,17 @@ const ranks = {
 export const scoreHand = (hand: Card[]) => {
   const [type, card] = classifyHand(hand);
   if (!type) return null;
+  const handScore = ranks[type].rank * 1000;
+  const cardScore = card?.rank || 0;
+  const highCardScore = ranks[type].hasHighCard
+    ? (getSameRank(1)(hand).at(-1)?.rank || 0) / 100
+    : 0;
 
-  console.log(card);
   return {
-    label: ranks[type]?.label || "",
-    rank: ranks[type]?.rank || -1,
-    subRank: card?.rank,
-    highCard: ranks[type]?.hasHighCard
-      ? getSameRank(1)(hand).at(-1)
-      : undefined,
+    score: handScore + cardScore + highCardScore,
+    label: ranks[type].label || "",
+    cardLabel: card?.label,
+    highCard: ranks[type].hasHighCard ? getSameRank(1)(hand).at(-1) : undefined,
   };
 };
 
