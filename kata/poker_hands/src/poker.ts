@@ -180,7 +180,20 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     return `White wins - ${whiteScore.label}: ${whiteScore.cardLabel}`;
   }
 
-  const highCard = determineHighCardWinner(blackHand, whiteHand);
+  const highCard = ((blackHand: Card[], whiteHand: Card[]) => {
+    const winnerCard = blackHand
+      .map((blackCard, i) => ({
+        blackRank: blackCard.rank,
+        whiteRank: whiteHand[i]?.rank ?? 0,
+      }))
+      .find(({ blackRank, whiteRank }) => blackRank !== whiteRank);
+
+    if (!winnerCard) return null;
+
+    return winnerCard.blackRank > winnerCard.whiteRank
+      ? (["Black", blackHand.at(0)!] as const)
+      : (["White", whiteHand.at(0)!] as const);
+  })(blackHand, whiteHand);
 
   if (highCard) {
     return `${highCard[0]} wins - high card: ${highCard[1].label}`;
@@ -188,23 +201,7 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
   return "Tie";
 };
 
-const determineHighCardWinner = (blackHand: Card[], whiteHand: Card[]) => {
-  const winnerCard = blackHand
-    .map((blackCard, i) => ({
-      blackRank: blackCard.rank,
-      whiteRank: whiteHand[i]?.rank ?? 0,
-    }))
-    .find(({ blackRank, whiteRank }) => blackRank !== whiteRank);
-
-  if (!winnerCard) return null;
-
-  return winnerCard.blackRank > winnerCard.whiteRank
-    ? (["Black", blackHand.at(0)!] as const)
-    : (["White", whiteHand.at(0)!] as const);
-};
-
 const getSameRank = (n: number) => (blackHand: Card[]) =>
   blackHand
     .filter((c) => blackHand.filter((d) => d.rank == c.rank).length == n)
     .sort((a, b) => a.rank - b.rank);
-
