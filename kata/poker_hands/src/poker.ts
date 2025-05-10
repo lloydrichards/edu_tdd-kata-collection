@@ -70,38 +70,37 @@ const hasStraight = (hand: Card[]) =>
   );
 
 export const classifyHand = (hand: Card[]) => {
-  const hands: Array<[keyof typeof ranks, boolean, Card | null]> = [
-    ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand), null],
+  const hands: Array<[keyof typeof ranks, boolean, Array<Card | null>]> = [
+    ["STRAIGHT_FLUSH", hasStraight(hand) && hasFlush(hand), [null]],
     [
       "FOUR_OF_KIND",
       getSameRank(4)(hand).length === 4,
-      getSameRank(4)(hand).at(-1) || null,
+      [getSameRank(4)(hand).at(-1) || null],
     ],
     [
       "FULL_HOUSE",
       getSameRank(2)(hand).length === 2 && getSameRank(3)(hand).length === 3,
-      getSameRank(3)(hand).at(-1) || null,
+      [getSameRank(3)(hand).at(-1) || null],
     ],
-    ["FLUSH", hasFlush(hand), null],
-    ["STRAIGHT", hasStraight(hand), null],
+    ["FLUSH", hasFlush(hand), [null]],
+    ["STRAIGHT", hasStraight(hand), [null]],
     [
       "THREE_OF_KIND",
       getSameRank(3)(hand).length === 3,
-      getSameRank(3)(hand).at(-1) || null,
+      [getSameRank(3)(hand).at(-1) || null],
     ],
     [
       "TWO_PAIR",
       getSameRank(2)(hand).length === 4,
-      getSameRank(2)(hand).at(-1) || null,
+      [getSameRank(2)(hand).at(-1) || null, getSameRank(2)(hand).at(0) || null],
     ],
     [
       "PAIR",
       getSameRank(2)(hand).length === 2,
-      getSameRank(2)(hand).at(-1) || null,
+      [getSameRank(2)(hand).at(-1) || null],
     ],
   ];
   const result = hands.find(([_, pred]) => pred);
-
   if (!result) return [null, null];
   return [result[0], result[2]] as const;
 };
@@ -138,7 +137,7 @@ const ranks = {
     hasHighCard: true,
   },
   TWO_PAIR: {
-    label: "two pair",
+    label: "two pairs",
     rank: 2,
     hasHighCard: true,
   },
@@ -152,8 +151,9 @@ const ranks = {
 export const scoreHand = (hand: Card[]) => {
   const [type, card] = classifyHand(hand);
   if (!type) return null;
+
   const handScore = ranks[type].rank * 1000;
-  const cardScore = card?.rank || 0;
+  const cardScore = (card?.[0]?.rank || 0) + (card?.[1]?.rank || 0);
   const highCardScore = ranks[type].hasHighCard
     ? (getSameRank(1)(hand).at(-1)?.rank || 0) / 100
     : 0;
@@ -161,7 +161,7 @@ export const scoreHand = (hand: Card[]) => {
   return {
     score: handScore + cardScore + highCardScore,
     label: ranks[type].label || "",
-    cardLabel: card?.label,
+    cardLabel: card?.[0]?.label,
     highCard: ranks[type].hasHighCard ? getSameRank(1)(hand).at(-1) : undefined,
   };
 };
@@ -169,6 +169,13 @@ export const scoreHand = (hand: Card[]) => {
 export const pokerGame = (black: Array<string>, white: Array<string>) => {
   const blackHand = black.map(parseCard).sort((a, b) => b.rank - a.rank);
   const whiteHand = white.map(parseCard).sort((a, b) => b.rank - a.rank);
+
+  const blackScore = scoreHand(blackHand);
+  const whiteScore = scoreHand(whiteHand);
+
+  if (blackScore && (blackScore.score || 0) > (whiteScore?.score || 0)) {
+    return `Black wins - ${blackScore.label}: ${blackScore.cardLabel}`;
+  }
 
   const twoPairs = determineWinningTwoPair(blackHand, whiteHand);
 
@@ -238,12 +245,12 @@ const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
   const whitePairs = getSameRank(2)(whiteHand);
 
   const pair = (
-    [blackPairs.at(0), whitePairs.at(0)].filter(Boolean) as Card[]
+    [blackPairs.at(-1), whitePairs.at(-1)].filter(Boolean) as Card[]
   ).sort((a, b) => a.rank - b.rank);
 
   if (blackPairs.length != 4 && whitePairs.length != 4) return null;
 
-  const pairWinner = isEqual(blackPairs.at(0), whitePairs.at(0))
+  const pairWinner = isEqual(blackPairs.at(-1), whitePairs.at(-1))
     ? isGreater(blackPairs.at(-1), whitePairs.at(-1))
       ? "Black"
       : "White"
@@ -264,9 +271,9 @@ const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
 };
 
 const getSameRank = (n: number) => (blackHand: Card[]) =>
-  blackHand.filter(
-    (c) => blackHand.filter((d) => d.rank == c.rank).length == n
-  );
+  blackHand
+    .filter((c) => blackHand.filter((d) => d.rank == c.rank).length == n)
+    .sort((a, b) => a.rank - b.rank);
 
 const isEqual = (a?: Card, b?: Card) => a?.rank == b?.rank;
 const isGreater = (a?: Card, b?: Card) => (a?.rank || -1) > (b?.rank || -1);

@@ -195,42 +195,42 @@ describe("Three of a Kind", () => {
 describe("classifyHand", () => {
   it("should classify as PAIR", () => {
     expect(classifyHand(["3H", "3D", "9S", "TC", "JD"].map(parseCard))).toEqual(
-      ["PAIR", parseCard("3D")]
+      ["PAIR", [parseCard("3D")]]
     );
   });
   it("should classify as TWO_PAIR", () => {
     expect(classifyHand(["3H", "3D", "9S", "9C", "JD"].map(parseCard))).toEqual(
-      ["TWO_PAIR", parseCard("9C")]
+      ["TWO_PAIR", [parseCard("9C"), parseCard("3H")]]
     );
   });
   it("should classify as THREE_OF_KIND", () => {
     expect(classifyHand(["3H", "3D", "3S", "9C", "JD"].map(parseCard))).toEqual(
-      ["THREE_OF_KIND", parseCard("3S")]
+      ["THREE_OF_KIND", [parseCard("3S")]]
     );
   });
   it("should classify as FLUSH", () => {
     expect(classifyHand(["3H", "4H", "7H", "TH", "JH"].map(parseCard))).toEqual(
-      ["FLUSH", null]
+      ["FLUSH", [null]]
     );
   });
   it("should classify as STRAIGHT", () => {
     expect(classifyHand(["3H", "4H", "5S", "6H", "7D"].map(parseCard))).toEqual(
-      ["STRAIGHT", null]
+      ["STRAIGHT", [null]]
     );
   });
   it("should classify as FULL_HOUSE", () => {
     expect(classifyHand(["3H", "3D", "3S", "9C", "9D"].map(parseCard))).toEqual(
-      ["FULL_HOUSE", parseCard("3S")]
+      ["FULL_HOUSE", [parseCard("3S")]]
     );
   });
   it("should classify as FOUR_OF_KIND", () => {
     expect(classifyHand(["3H", "3D", "3S", "3C", "JD"].map(parseCard))).toEqual(
-      ["FOUR_OF_KIND", parseCard("3C")]
+      ["FOUR_OF_KIND", [parseCard("3C")]]
     );
   });
   it("should classify as STRAIGHT_FLUSH", () => {
     expect(classifyHand(["3H", "4H", "5H", "6H", "7H"].map(parseCard))).toEqual(
-      ["STRAIGHT_FLUSH", null]
+      ["STRAIGHT_FLUSH", [null]]
     );
   });
 });
