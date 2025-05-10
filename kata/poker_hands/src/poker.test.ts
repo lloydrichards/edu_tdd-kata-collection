@@ -106,7 +106,7 @@ describe("pokerGame", () => {
           ["2H", "3D", "5S", "9C", "JD"],
           ["2C", "3H", "4S", "8C", "JH"]
         )
-      ).toBe("Black wins - high card: Jack");
+      ).toBe("Black wins - high card: Nine");
     });
   });
 
@@ -259,13 +259,13 @@ describe("Examples", () => {
   it("2", () => {
     expect(
       pokerGame(["2H", "4S", "4C", "2D", "4H"], ["2S", "8S", "AS", "QS", "3S"])
-    ).toBe("Black wins - full house");
+    ).toBe("Black wins - full house: Four");
   });
 
   it("3", () => {
     expect(
       pokerGame(["2H", "3D", "5S", "9C", "KD"], ["2C", "3H", "4S", "8C", "KH"])
-    ).toBe("Black wins - high card: 9");
+    ).toBe("Black wins - high card: Nine");
   });
 
   it("4", () => {

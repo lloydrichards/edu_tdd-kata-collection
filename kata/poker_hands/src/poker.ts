@@ -180,23 +180,23 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
     return `White wins - ${whiteScore.label}: ${whiteScore.cardLabel}`;
   }
 
-  const highCard = ((blackHand: Card[], whiteHand: Card[]) => {
-    const winnerCard = blackHand
-      .map((blackCard, i) => ({
-        blackRank: blackCard.rank,
-        whiteRank: whiteHand[i]?.rank ?? 0,
-      }))
-      .find(({ blackRank, whiteRank }) => blackRank !== whiteRank);
+  const winnerCard = blackHand
+    .map((blackCard, i) => ({
+      black: blackCard,
+      white: whiteHand[i]!,
+    }))
+    .find(({ black, white }) => black?.rank !== white?.rank);
 
-    if (!winnerCard) return null;
-
-    return winnerCard.blackRank > winnerCard.whiteRank
-      ? (["Black", blackHand.at(0)!] as const)
-      : (["White", whiteHand.at(0)!] as const);
-  })(blackHand, whiteHand);
-
-  if (highCard) {
-    return `${highCard[0]} wins - high card: ${highCard[1].label}`;
+  if (winnerCard) {
+    const winningPlayer =
+      (winnerCard.black?.rank || 0) > (winnerCard.white?.rank || 0)
+        ? "Black"
+        : "White";
+    const winningCard =
+      (winnerCard.black?.rank || 0) > (winnerCard.white?.rank || 0)
+        ? winnerCard.black
+        : winnerCard.white;
+    return `${winningPlayer} wins - high card: ${winningCard?.label}`;
   }
   return "Tie";
 };
