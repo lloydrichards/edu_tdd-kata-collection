@@ -176,25 +176,8 @@ export const pokerGame = (black: Array<string>, white: Array<string>) => {
   if (blackScore && (blackScore.score || 0) > (whiteScore?.score || 0)) {
     return `Black wins - ${blackScore.label}: ${blackScore.cardLabel}`;
   }
-
-  const twoPairs = determineWinningTwoPair(blackHand, whiteHand);
-
-  const determineWinFor = makeWinningFor(blackHand, whiteHand);
-
-  const threeOfAKind = determineWinFor(getSameRank(3));
-
-  if (threeOfAKind) {
-    return `${threeOfAKind[0]} wins - three of a kind: ${threeOfAKind[1]?.label}`;
-  }
-
-  if (twoPairs) {
-    return `${twoPairs[0]} wins - two pairs: ${twoPairs[1]?.label}`;
-  }
-
-  const pairs = determineWinFor(getSameRank(2));
-
-  if (pairs) {
-    return `${pairs[0]} wins - pair: ${pairs[1]?.label}`;
+  if (whiteScore && (whiteScore.score || 0) > (blackScore?.score || 0)) {
+    return `White wins - ${whiteScore.label}: ${whiteScore.cardLabel}`;
   }
 
   const highCard = determineHighCardWinner(blackHand, whiteHand);
@@ -220,60 +203,8 @@ const determineHighCardWinner = (blackHand: Card[], whiteHand: Card[]) => {
     : (["White", whiteHand.at(0)!] as const);
 };
 
-const makeWinningFor =
-  (blackHand: Card[], whiteHand: Card[]) => (fn: (hand: Card[]) => Card[]) => {
-    const pair = (
-      [fn(blackHand).at(0), fn(whiteHand).at(0)].filter(Boolean) as Card[]
-    ).sort((a, b) => a.rank - b.rank);
-
-    if (!pair.at(-1)) return null;
-
-    if (isEqual(fn(blackHand).at(0), fn(whiteHand).at(0))) {
-      const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
-      if (!winningHighCard) return null;
-      return [winningHighCard[0], pair.at(-1)] as const;
-    }
-
-    return [
-      isGreater(fn(blackHand).at(0), fn(whiteHand).at(0)) ? "Black" : "White",
-      pair.at(-1),
-    ] as const;
-  };
-
-const determineWinningTwoPair = (blackHand: Card[], whiteHand: Card[]) => {
-  const blackPairs = getSameRank(2)(blackHand);
-  const whitePairs = getSameRank(2)(whiteHand);
-
-  const pair = (
-    [blackPairs.at(-1), whitePairs.at(-1)].filter(Boolean) as Card[]
-  ).sort((a, b) => a.rank - b.rank);
-
-  if (blackPairs.length != 4 && whitePairs.length != 4) return null;
-
-  const pairWinner = isEqual(blackPairs.at(-1), whitePairs.at(-1))
-    ? isGreater(blackPairs.at(-1), whitePairs.at(-1))
-      ? "Black"
-      : "White"
-    : isGreater(blackPairs.at(0), whitePairs.at(0))
-      ? "Black"
-      : "White";
-
-  if (
-    isEqual(blackPairs.at(0), whitePairs.at(0)) &&
-    isEqual(blackPairs.at(-1), whitePairs.at(-1))
-  ) {
-    const winningHighCard = determineHighCardWinner(blackHand, whiteHand);
-    if (!winningHighCard) return null;
-    return [winningHighCard[0], pair.at(-1)] as const;
-  }
-
-  return [pairWinner, pair.at(-1)] as const;
-};
-
 const getSameRank = (n: number) => (blackHand: Card[]) =>
   blackHand
     .filter((c) => blackHand.filter((d) => d.rank == c.rank).length == n)
     .sort((a, b) => a.rank - b.rank);
 
-const isEqual = (a?: Card, b?: Card) => a?.rank == b?.rank;
-const isGreater = (a?: Card, b?: Card) => (a?.rank || -1) > (b?.rank || -1);
