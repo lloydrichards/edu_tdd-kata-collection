@@ -42,7 +42,6 @@ describe("card", () => {
     [2, 3, 4, 5, 6, 7, 8, 9].forEach((value) =>
       it(`should accept ${value} card`, () => {
         expect(parseCard(`${value}H`)["suit"]).toEqual("HEART");
-        expect(parseCard(`${value}H`)["value"]).toEqual(value);
         expect(parseCard(`${value}H`)["rank"]).toEqual(value - 2);
       })
     );
@@ -51,14 +50,12 @@ describe("card", () => {
     });
     it(`should accept T (10) card`, () => {
       expect(parseCard("TH")["suit"]).toEqual("HEART");
-      expect(parseCard("TH")["value"]).toEqual(10);
       expect(parseCard("TH")["rank"]).toEqual(8);
     });
 
     ["J", "Q", "K", "A"].forEach((value, idx) =>
       it(`should accept ${value} face card`, () => {
         expect(parseCard(`${value}H`)["suit"]).toEqual("HEART");
-        expect(parseCard(`${value}H`)["value"]).toEqual(10);
         expect(parseCard(`${value}H`)["rank"]).toEqual(9 + idx);
       })
     );

@@ -1,9 +1,24 @@
 type Card = {
   suit: string;
-  value: number;
   label: string;
   rank: number;
 };
+
+const cardLabels = [
+  "Two",
+  "Three",
+  "Four",
+  "Five",
+  "Six",
+  "Seven",
+  "Eight",
+  "Nine",
+  "Ten",
+  "Jack",
+  "Queen",
+  "King",
+  "Ace",
+];
 
 const getSuitFor = (card: string) => {
   switch (true) {
@@ -21,42 +36,22 @@ const getSuitFor = (card: string) => {
 };
 
 const getValueFor = (card: string) => {
-  const validFace: Array<any> = ["J", "Q", "K", "A"];
-  const validValues: Array<any> = ["2", "3", "4", "5", "6", "7", "8", "9", "T"];
+  const validValues = ["2", "3", "4", "5", "6", "7", "8", "9", "T"];
 
-  if (validFace.includes(card[0])) {
-    const idx = validFace.findIndex((v) => v === card[0]);
-    return [10, idx + validValues.length] as const;
-  }
-
+  const faceIdx = ["J", "Q", "K", "A"].findIndex((v) => v === card[0]);
   const valueIdx = validValues.findIndex((v) => v === card[0]);
 
+  if (faceIdx >= 0) return faceIdx + validValues.length;
   if (valueIdx === -1) throw new Error("value is not accepted");
 
-  return [valueIdx + 2, valueIdx] as const;
+  return valueIdx;
 };
 
 export const parseCard = (card: string): Card => {
-  const labels = [
-    "Two",
-    "Three",
-    "Four",
-    "Five",
-    "Six",
-    "Seven",
-    "Eight",
-    "Nine",
-    "Ten",
-    "Jack",
-    "Queen",
-    "King",
-    "Ace",
-  ];
-  const [value, rank] = getValueFor(card);
-  const label = labels[rank] || "";
+  const rank = getValueFor(card);
+  const label = cardLabels[rank] || "";
   return {
     suit: getSuitFor(card),
-    value,
     label,
     rank,
   };
