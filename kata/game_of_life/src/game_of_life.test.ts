@@ -51,11 +51,9 @@ describe("gameOfLife", () => {
   describe("nextCell", () => {
     it.effect("when given a cell, should return is the cell is alive", () =>
       Effect.gen(function* () {
-        const result = yield* nextCell(
-          [0, 0],
-          [[new Cell({ x: 0, y: 0, isAlive: false })]]
-        );
-        expect(result).toEqual(false);
+        const cell = new Cell({ x: 0, y: 0, isAlive: false });
+        const result = yield* nextCell([0, 0], [[cell]]);
+        expect(result).toEqual(cell.isAlive);
       })
     );
     describe("underpopulation", () => {
@@ -63,6 +61,13 @@ describe("gameOfLife", () => {
       it.effect("when a live cell has no neighbours, should return dead", () =>
         Effect.gen(function* () {
           const game = yield* parseInput(".*.");
+          const result = yield* nextCell([0, 1], game);
+          expect(result).toEqual(false);
+        })
+      );
+      it.effect("when a live cell has one neighbours, should return dead", () =>
+        Effect.gen(function* () {
+          const game = yield* parseInput(".*.\n.*.\n...");
           const result = yield* nextCell([0, 1], game);
           expect(result).toEqual(false);
         })
