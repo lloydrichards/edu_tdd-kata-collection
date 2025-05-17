@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { GameOfLife } from "./hiker";
+import { GameOfLife } from "./game_of_life";
 
 describe("gameOfLife", () => {
   it.effect(
