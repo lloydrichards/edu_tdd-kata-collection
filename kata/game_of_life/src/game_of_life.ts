@@ -11,6 +11,7 @@ export const nextCell = (curIdx: [number, number], generation: Cell[][]) =>
     ].filter((d) => d != undefined);
 
     if (neighbours.filter((c) => c.isAlive).length < 2) return false;
+    if (neighbours.filter((c) => c.isAlive).length > 3) return false;
 
     return currentCell?.isAlive;
   });

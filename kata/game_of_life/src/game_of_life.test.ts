@@ -74,7 +74,7 @@ describe("gameOfLife", () => {
       );
     });
     describe("overcrowding", () => {
-      //2. Any live cell with more than three live neighbours dies, as if by overcrowding.
+      // 2. Any live cell with more than three live neighbours dies, as if by overcrowding.
       it.effect(
         "when a live cell has three neighbours, should return dead",
         () =>
