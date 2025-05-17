@@ -23,7 +23,7 @@ describe("gameOfLife", () => {
     it.effect("when given generation, should return array of cells", () =>
       Effect.gen(function* () {
         const result = yield* parseInput("....");
-        expect(result).toEqual([".", ".", ".", "."]);
+        expect(result).toEqual([[".", ".", ".", "."]]);
       })
     );
     it.effect(
