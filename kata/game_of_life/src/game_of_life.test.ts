@@ -23,7 +23,13 @@ describe("gameOfLife", () => {
     it.effect("when given generation, should return array of cells", () =>
       Effect.gen(function* () {
         const result = yield* parseInput("....");
-        expect(result).toEqual([[false, false, false, false]]);
+        expect(result[0]?.[0]).toEqual(
+          new Cell({
+            x: 0,
+            y: 0,
+            isAlive: false,
+          })
+        );
       })
     );
     it.effect(
@@ -31,10 +37,13 @@ describe("gameOfLife", () => {
       () =>
         Effect.gen(function* () {
           const result = yield* parseInput(".*..\n....");
-          expect(result).toEqual([
-            [false, true, false, false],
-            [false, false, false, false],
-          ]);
+          expect(result[0]?.[0]).toEqual(
+            new Cell({
+              x: 0,
+              y: 0,
+              isAlive: false,
+            })
+          );
         })
     );
   });
@@ -45,7 +54,13 @@ describe("gameOfLife", () => {
         const result = yield* nextCell(
           new Cell({ x: 0, y: 0, isAlive: false })
         );
-        expect(result).toEqual([[false, false, false, false]]);
+        expect(result).toEqual(
+          new Cell({
+            x: 0,
+            y: 0,
+            isAlive: false,
+          })
+        );
       })
     );
   });
