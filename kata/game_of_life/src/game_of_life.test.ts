@@ -23,17 +23,17 @@ describe("gameOfLife", () => {
     it.effect("when given generation, should return array of cells", () =>
       Effect.gen(function* () {
         const result = yield* parseInput("....");
-        expect(result).toEqual([[".", ".", ".", "."]]);
+        expect(result).toEqual([[false, false, false, false]]);
       })
     );
     it.effect(
       "when given a multiline generation, should return array of cells",
       () =>
         Effect.gen(function* () {
-          const result = yield* parseInput("....\n....");
+          const result = yield* parseInput(".*..\n....");
           expect(result).toEqual([
-            [".", ".", ".", "."],
-            [".", ".", ".", "."],
+            [false, true, false, false],
+            [false, false, false, false],
           ]);
         })
     );

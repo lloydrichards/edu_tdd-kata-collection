@@ -2,7 +2,8 @@ import { Effect, pipe } from "effect";
 
 export const parseInput = (input: string) =>
   Effect.gen(function* () {
-    return input.split("\n").map((s) => s.split(""));
+    const parts = input.split("\n").map((s) => s.split(""));
+    return parts.map((r) => r.map((c) => c == "*"));
   });
 
 export const GameOfLife = Effect.fn("GameOfLife")(function* (n: string) {
