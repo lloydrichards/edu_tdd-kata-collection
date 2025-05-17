@@ -1,12 +1,6 @@
+import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { answer, GameOfLife } from "./hiker";
-import { expect, describe, it } from "@effect/vitest";
-
-describe("answer", () => {
-  it("to life the universe and everything", () => {
-    expect(answer()).toEqual(42);
-  });
-});
+import { GameOfLife } from "./hiker";
 
 describe("gameOfLife", () => {
   it.effect("when given an input, should return a generation", () =>
