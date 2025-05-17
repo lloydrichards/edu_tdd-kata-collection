@@ -1,8 +1,10 @@
 import { Effect, pipe, Schema } from "effect";
 
-export const nextCell = (current: Cell) =>
+export const nextCell = (curIdx: [number, number], generation: Cell[][]) =>
   Effect.gen(function* () {
-    return current;
+    const currentCell = generation[curIdx[0]]?.[curIdx[1]];
+
+    return currentCell;
   });
 
 export class Cell extends Schema.Class<Cell>("Cell")({

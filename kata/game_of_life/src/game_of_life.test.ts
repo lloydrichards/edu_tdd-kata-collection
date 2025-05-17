@@ -49,19 +49,24 @@ describe("gameOfLife", () => {
   });
 
   describe("nextCell", () => {
-    it.effect("when given a cell, should return a cell", () =>
+    it.effect("when given a cell, should return is the cell is alive", () =>
       Effect.gen(function* () {
         const result = yield* nextCell(
-          new Cell({ x: 0, y: 0, isAlive: false })
+          [0, 0],
+          [[new Cell({ x: 0, y: 0, isAlive: false })]]
         );
-        expect(result).toEqual(
-          new Cell({
-            x: 0,
-            y: 0,
-            isAlive: false,
-          })
-        );
+        expect(result).toEqual(false);
       })
     );
+    describe("underpopulation", () => {
+      // 1. Any live cell with fewer than two live neighbours dies, as if caused by underpopulation.
+      it.effect("when a live cell has no neighbours, should return dead", () =>
+        Effect.gen(function* () {
+          const game = yield* parseInput(".*.");
+          const result = yield* nextCell([0, 1], game);
+          expect(result).toEqual(false);
+        })
+      );
+    });
   });
 });
