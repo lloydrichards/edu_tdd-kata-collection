@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-import { GameOfLife, parseInput } from "./game_of_life";
+import { Cell, GameOfLife, nextCell, parseInput } from "./game_of_life";
 
 describe("gameOfLife", () => {
   it.effect(
@@ -36,6 +36,17 @@ describe("gameOfLife", () => {
             [false, false, false, false],
           ]);
         })
+    );
+  });
+
+  describe("nextCell", () => {
+    it.effect("when given a cell, should return a cell", () =>
+      Effect.gen(function* () {
+        const result = yield* nextCell(
+          new Cell({ x: 0, y: 0, isAlive: false })
+        );
+        expect(result).toEqual([[false, false, false, false]]);
+      })
     );
   });
 });
