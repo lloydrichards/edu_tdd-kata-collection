@@ -1,4 +1,11 @@
 {
   "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "plugins": [
+      {
+        "name": "@effect/language-service"
+      }
+    ]
+  },
   "exclude": ["node_modules"]
 }

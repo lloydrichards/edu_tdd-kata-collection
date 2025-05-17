@@ -6,6 +6,7 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
+    "@effect/language-service": "^0.16.1",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/bun": "^1.2.12"
