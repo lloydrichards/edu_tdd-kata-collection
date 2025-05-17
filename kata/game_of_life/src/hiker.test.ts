@@ -3,10 +3,19 @@ import { Effect } from "effect";
 import { GameOfLife } from "./hiker";
 
 describe("gameOfLife", () => {
-  it.effect("when given an input, should return a generation", () =>
-    Effect.gen(function* () {
-      const result = yield* GameOfLife("");
-      expect(result).toBe("");
-    })
+  it.effect(
+    "when given an input, should return a generation of the same size",
+    () =>
+      Effect.gen(function* () {
+        const generation =
+          "........\n" +
+          "........\n" +
+          "....*...\n" +
+          "...**...\n" +
+          ".....*..\n" +
+          "........";
+        const result = yield* GameOfLife(generation);
+        expect(result).toHaveLength(generation.length);
+      })
   );
 });
