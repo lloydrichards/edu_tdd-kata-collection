@@ -68,9 +68,21 @@ describe("gameOfLife", () => {
       it.effect("when a live cell has one neighbours, should return dead", () =>
         Effect.gen(function* () {
           const game = yield* parseInput(".*.\n.*.\n...");
-          const result = yield* nextCell([0, 1], game);
+          const result = yield* nextCell([1, 1], game);
           expect(result).toEqual(false);
         })
+      );
+    });
+    describe("overcrowding", () => {
+      //2. Any live cell with more than three live neighbours dies, as if by overcrowding.
+      it.effect(
+        "when a live cell has three neighbours, should return dead",
+        () =>
+          Effect.gen(function* () {
+            const game = yield* parseInput(".*.\n***\n.*.");
+            const result = yield* nextCell([1, 1], game);
+            expect(result).toEqual(false);
+          })
       );
     });
   });
